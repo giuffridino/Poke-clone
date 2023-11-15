@@ -26,7 +26,7 @@ private:
     bool m_bIsMoving = false;
 
     const int m_frameWidth = 16;
-    const int m_frameHeight = 16;
+    const int m_frameHeight = 32;
     int m_animRow = 0;
     int m_animFrame = 0;
     int m_animNumFrames = 4;
@@ -36,7 +36,7 @@ private:
     Direction m_facing = SOUTH;
     Direction m_lastFacing = SOUTH;
     int m_moveTime = 0;
-    int m_framesToCrossOneTile = 8;
+    int m_framesToCrossOneTile = 8;  //enable a selection switch between 8 and 4 (faster) for the user in order to speed up movement (nice feature)
     int m_speed = 64 / m_framesToCrossOneTile;
 
 };

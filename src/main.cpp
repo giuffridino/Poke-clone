@@ -28,7 +28,6 @@ int main()
         //     accumulatedTime -= frameDuration;
         //     player.update();
         // }
-        
 
         player.update();
         player.draw();

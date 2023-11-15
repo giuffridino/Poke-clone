@@ -5,12 +5,12 @@
 
 Player::Player()
 {
-    TheTextureManager::Instance()->load("assets/monkey-boy.png", "monkey-boy");
+    TheTextureManager::Instance()->load("assets/trainer-character.png", "main-trainer");
 }
 
 Player::~Player()
 {
-    TheTextureManager::Instance()->unload("monkey-boy");
+    TheTextureManager::Instance()->unload("main-trainer");
 }
 
 void Player::update()
@@ -37,10 +37,10 @@ void Player::update()
         }
         switch (m_facing)
         {
-        case NORTH: m_position.y -= m_speed; m_animRow = 4; break;
         case SOUTH: m_position.y += m_speed; m_animRow = 0; break;
-        case EAST: m_position.x += m_speed; m_animRow = 6; break;
+        case NORTH: m_position.y -= m_speed; m_animRow = 1; break;
         case WEST: m_position.x -= m_speed; m_animRow = 2; break;
+        case EAST: m_position.x += m_speed; m_animRow = 3; break;
         default:
             break;
         }
@@ -55,7 +55,7 @@ void Player::update()
 
 void Player::draw()
 {
-    TheTextureManager::Instance()->drawFrame("monkey-boy", m_position.x, m_position.y, m_frameWidth, m_frameHeight, m_animRow, m_animFrame, Vector2{0.0f, 0.0f});
+    TheTextureManager::Instance()->drawFrame("main-trainer", m_position.x, m_position.y, m_frameWidth, m_frameHeight, m_animRow, m_animFrame, Vector2{0.0f, 0.0f});
 }
 
 Direction Player::getInputDirection()
