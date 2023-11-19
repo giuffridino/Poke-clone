@@ -1,38 +1,50 @@
-#include <raylib.h>
+#include "Game.h"
+#include "iostream"
+// #include <raylib.h>
 #include "Player.h"
 
-Color darkGreen = Color{20, 160, 133, 255};
+Color green = Color{20, 160, 133, 255};
 
-const int screenWidth = 960;
+const int screenWidth = 1280;
 const int screenHeight = 960;
-
-const float frameDuration = 0.017;
-const float maxTimePerFrame = 0.2;
-float accumulatedTime = 0;
 
 int main()
 {
-    InitWindow(screenWidth, screenHeight, "Monkey Boy");
-    Player player = Player();
-    SetTargetFPS(60);
-
-    while (!WindowShouldClose())
+    // InitWindow(screenWidth, screenHeight, "Poke-Clone");
+    // Player player = Player();
+    // SetTargetFPS(60);
+    if (Game::Instance()->init("Poke-Clone", screenWidth, screenHeight))
     {
-        BeginDrawing();
-        ClearBackground(darkGreen);
-
-        // accumulatedTime += GetFrameTime();
-        // if (accumulatedTime > maxTimePerFrame){ accumulatedTime = maxTimePerFrame; }
-        // while (accumulatedTime >= frameDuration)
-        // {
-        //     accumulatedTime -= frameDuration;
-        //     player.update();
-        // }
-
-        player.update();
-        player.draw();
-        EndDrawing();
+        // Player player = Player();
+        while (Game::Instance()->running())
+        {
+            BeginDrawing();
+            ClearBackground(green);
+            // Game::Instance()->handleEvents();
+			Game::Instance()->update();
+			Game::Instance()->render();
+            // player.update();
+            // player.draw();
+            EndDrawing();
+        }
+        
     }
+    else
+    {
+        std::cout << "Game init failure --\n";
+        return 1;
+    }
+    
+
+    // while (!WindowShouldClose())
+    // {
+    //     BeginDrawing();
+    //     ClearBackground(green);
+
+    //     player.update();
+    //     player.draw();
+    //     EndDrawing();
+    // }
 
     CloseWindow();
     return 0;

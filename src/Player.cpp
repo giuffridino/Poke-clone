@@ -13,6 +13,11 @@ Player::~Player()
     TheTextureManager::Instance()->unload("main-trainer");
 }
 
+void Player::load(const std::unique_ptr<LoaderParams> &pParams)
+{
+    TrainerObject::load(std::move(pParams));
+}
+
 void Player::update()
 {
     if (m_moveTime <= 0 && !m_bIsMoving)

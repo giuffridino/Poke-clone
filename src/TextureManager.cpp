@@ -30,8 +30,8 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
     srcRect.height = height;
     destRect.x = x;
     destRect.y = y;
-    destRect.width = 4 * width;
-    destRect.height = 4 * height;
+    destRect.width = width;
+    destRect.height = height;
 
     // std::cout << "Drawing frame with id: " << id << " " << x << " " << y << " " << width <<  " " << height << "\n";
     // std::cout << "srcRect: " << srcRect.x << " " << srcRect.y << " " << srcRect.width <<  " " << srcRect.height << "\n";
@@ -40,19 +40,18 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
     DrawTexturePro(m_textureMap[id], srcRect, destRect, origin, 0.0f, WHITE);
 }
 
-// void TextureManager::drawTile(std::string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame)
-// {
-//     SDL_Renderer *pRenderer = TheGame::Instance()->getRenderer();
-
-//     SDL_Rect srcRect, destRect;
-//     srcRect.x = margin + (spacing + width) * currentFrame;
-//     srcRect.y = margin + (spacing + height) * currentRow;
-//     destRect.x = x;
-//     destRect.y = y;
-//     srcRect.w = destRect.w = width;
-//     srcRect.h = destRect.h = height;
-//     SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, SDL_FLIP_NONE);
-// }
+void TextureManager::drawTile(std::string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame)
+{
+    Rectangle srcRect, destRect;
+    srcRect.x = margin + (spacing + width) * currentFrame;
+    srcRect.y = margin + (spacing + height) * currentRow;
+    destRect.x = x;
+    destRect.y = y;
+    srcRect.width = destRect.width = width;
+    srcRect.height = destRect.height = height;
+    DrawTexturePro(m_textureMap[id], srcRect, destRect, Vector2{0.0f, 0.0f}, 0.0f, WHITE);
+    // SDL_RenderCopyEx(pRenderer, m_textureMap[id], &srcRect, &destRect, 0, 0, SDL_FLIP_NONE);
+}
 
 void TextureManager::clearTextureMap(void)
 {

@@ -25,10 +25,10 @@ public:
     // void draw(std::string id, int x, int y, int width, int height, double scale, double rotation, double alpha);
 
     // Draw frame
-    void drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, Vector2 origin);
+    void drawFrame(std::string id, int x, int y, int width, int height, int currentRow, int currentFrame, Vector2 origin = {0.0f, 0.0f});
 
     // Draw tile from tileset
-    // void drawTile(std::string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame);
+    void drawTile(std::string id, int margin, int spacing, int x, int y, int width, int height, int currentRow, int currentFrame);
 
     std::map<std::string, Texture2D> getTextureMap() { return m_textureMap; }
     

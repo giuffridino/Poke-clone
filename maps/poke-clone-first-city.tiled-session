@@ -1,0 +1,38 @@
+{
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "": {
+            "scaleInDock": 1
+        },
+        "#Game Boy Advance - Pokemon FireRed LeafGreen - Pallet Town": {
+            "scaleInDock": 1
+        },
+        "test-first-city.tmx": {
+            "scale": 1,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 529.5,
+                "y": 471.5
+            }
+        },
+        "test-first-city.tmx#Game Boy Advance - Pokemon FireRed LeafGreen - Pallet Town": {
+            "scaleInDock": 1
+        }
+    },
+    "last.imagePath": "C:/raylib-projects/Poke-clone/maps",
+    "map.lastUsedFormat": "tmx",
+    "map.layerDataFormat": null,
+    "openFiles": [
+    ],
+    "project": "poke-clone-first-city.tiled-project",
+    "recentFiles": [
+        "test-first-city.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}
