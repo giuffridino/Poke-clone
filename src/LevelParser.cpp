@@ -166,7 +166,10 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>
     {
         pCollisionLayers->push_back(pTileLayer);
     }
-    pLayers->push_back(pTileLayer);    
+    else
+    {
+        pLayers->push_back(pTileLayer); 
+    }
 }
 
 void LevelParser::parseTextures(TiXmlElement *pTextureRoot)

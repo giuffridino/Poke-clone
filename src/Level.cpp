@@ -17,7 +17,7 @@ void Level::render(void)
 {
     for (unsigned int i = 0; i < m_layers.size(); i++)
     {
-        // std::cout << "rendering m_layers[" << i << "]\n";
+        // std::cout << "rendering m_layers[" << i << "]\n";        
         m_layers[i]->render();
     }
     for (unsigned int i = 0; i < m_objectLayers.size(); i++)

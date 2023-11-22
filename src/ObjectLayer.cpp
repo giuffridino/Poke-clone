@@ -68,7 +68,7 @@ void ObjectLayer::render()
     {
         if(m_gameObjects[i]->getPosition().x <= TheGame::Instance()->getGameWidth())
         {
-            std::cout << "drawing object with ID: " << m_gameObjects[i]->getTextureID() << " in objectlayer at positionX: " << m_gameObjects[i]->getPosition().x << "\n";
+            // std::cout << "drawing object with ID: " << m_gameObjects[i]->getTextureID() << " in objectlayer at positionX: " << m_gameObjects[i]->getPosition().x << "\n";
             m_gameObjects[i]->draw();
         }
     }

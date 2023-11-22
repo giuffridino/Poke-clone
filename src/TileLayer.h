@@ -5,7 +5,6 @@
 #include <raylib.h>
 #include <vector>
 #include "Layer.h"
-// #include "Vector2D.h"
 
 class Level;
 struct Tileset;
