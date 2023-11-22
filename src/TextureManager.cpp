@@ -5,6 +5,7 @@ TextureManager* TextureManager::s_pInstance = nullptr;
 
 bool TextureManager::load(std::string fileName, std::string id)
 {
+    std::cout << "Loading texture: " << fileName << " with id: " << id << "\n";
     Texture2D texture = LoadTexture(fileName.c_str());
     if(texture.id != (unsigned int) -1)
     {
@@ -36,7 +37,7 @@ void TextureManager::drawFrame(std::string id, int x, int y, int width, int heig
     // std::cout << "Drawing frame with id: " << id << " " << x << " " << y << " " << width <<  " " << height << "\n";
     // std::cout << "srcRect: " << srcRect.x << " " << srcRect.y << " " << srcRect.width <<  " " << srcRect.height << "\n";
     // std::cout << "destRect: " << destRect.x << " " << destRect.y << " " << destRect.width <<  " " << destRect.height << "\n";
-
+    std::cout << "m_textureMap[id].id = " << m_textureMap[id].id << "\n";
     DrawTexturePro(m_textureMap[id], srcRect, destRect, origin, 0.0f, WHITE);
 }
 

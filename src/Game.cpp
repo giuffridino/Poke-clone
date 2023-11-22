@@ -4,7 +4,7 @@
 #include "LevelParser.h"
 #include "Level.h"
 #include <iostream>
-// #include "GameObjectFactory.h"
+#include "GameObjectFactory.h"
 
 Game *Game::s_pInstance = nullptr;
 
@@ -20,15 +20,16 @@ bool Game::init(const char *title, int width, int height)
 	m_gameHeight = height;
     SetTargetFPS(60);
 
-    m_player = new Player();
-    m_player2 = new Player();
-    m_player->load(std::unique_ptr<LoaderParams>( new LoaderParams("main-trainer", Vector2{0.0f, 0.0f}, 16, 32, 0, 0, 4, 0, 10, SOUTH)));
+    // m_player = new Player();
+    // m_player->load(std::unique_ptr<LoaderParams>( new LoaderParams("main-trainer", Vector2{0.0f, 0.0f}, 16, 32, 0, 0, 4, 0, 10, SOUTH)));
     // m_player2->load(std::unique_ptr<LoaderParams>( new LoaderParams("main-trainer", Vector2{0.0f, 0.0f}, 16, 32, 0, 0, 4, 0, 10, SOUTH)));
-    m_gameObjects.push_back(m_player);
+    // m_gameObjects.push_back(m_player);
     // m_gameObjects.push_back(m_player2);
 
+    TheGameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
+
     LevelParser levelParser;
-    m_pLevel = levelParser.parseLevel("test-first-city.tmx");
+    m_pLevel = levelParser.parseLevel("first-city.tmx");
     
     // TheGameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
     // m_player = Player();
@@ -37,10 +38,14 @@ bool Game::init(const char *title, int width, int height)
 
 void Game::update()
 {
-    for (std::vector<GameObject *>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->update();
-	}
+    if(m_pLevel != 0)
+    {
+        m_pLevel->update();
+    }
+    // for (std::vector<GameObject *>::size_type i = 0; i < m_gameObjects.size(); i++)
+	// {
+	// 	m_gameObjects[i]->update();
+	// }
     // m_player.update();
 }
 
@@ -51,10 +56,10 @@ void Game::render()
         // std::cout << "rendering m_pLevel\n";
         m_pLevel->render();
     }
-    for (std::vector<GameObject *>::size_type i = 0; i < m_gameObjects.size(); i++)
-	{
-		m_gameObjects[i]->draw();
-	}
+    // for (std::vector<GameObject *>::size_type i = 0; i < m_gameObjects.size(); i++)
+	// {
+	// 	m_gameObjects[i]->draw();
+	// }
     // m_player.draw();
 }
 

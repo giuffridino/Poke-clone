@@ -4,8 +4,11 @@
 
 #include "Layer.h"
 #include "GameObject.h"
-#include "Level.h"
+// #include "Level.h"
+#include "CollisionManager.h"
 #include <vector>
+
+class Level;
 
 class ObjectLayer : public Layer
 {
@@ -18,6 +21,7 @@ public:
     std::vector<GameObject*> *getGameObjects(void) { return &m_gameObjects; }
 
 private:
+    CollisionManager m_collisionManager;
     std::vector<GameObject*> m_gameObjects;
 };
 

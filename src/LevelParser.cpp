@@ -2,6 +2,7 @@
 #include "TextureManager.h"
 #include "Game.h"
 #include "TileLayer.h"
+#include "ObjectLayer.h"
 #include "base64.h"
 #include "ObjectLayer.h"
 #include "GameObjectFactory.h"
@@ -27,16 +28,27 @@ Level* LevelParser::parseLevel(const char* levelFile)
     pRoot->Attribute("width", &m_width);
     pRoot->Attribute("height", &m_height);
 
-    //we know that properties is the first child of the root
-    // TiXmlElement* pProperties = pRoot->FirstChildElement();
-    // // we must parse the textures needed for this level, which have been added to properties
-    // for(TiXmlElement* e = pProperties->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
-    // {
-    //     if(e->Value() == std::string("property"))
-    //     {
-    //         parseTextures(e);
-    //     }
-    // }
+    // we know that properties is the first child of the root
+    TiXmlElement* pProperties = pRoot->FirstChildElement("properties");
+    std::cout << " pRoot->FirstChildElement()->Value(): " << pRoot->FirstChildElement()->Value() << "\n";
+    if (pProperties)
+    {
+        for(TiXmlElement* e = pProperties->FirstChildElement("property"); e != NULL; e = e->NextSiblingElement("property"))
+        {
+            std::cout << "INSIDE pPROPERTIES FOR LOOP " << e->Value() << "\n";
+            parseTextures(e);
+            // if(e->Value() == std::string("property"))
+            // {
+            //     parseTextures(e);
+            // }
+        }
+    }
+    else
+    {
+        std::cout << "No properties found\n";
+    }
+    // we must parse the textures needed for this level, which have been added to properties
+    
     // we must now parse the tilesets
     for(TiXmlElement* e = pRoot->FirstChildElement(); e != NULL; e = e->NextSiblingElement())
     {
@@ -52,11 +64,13 @@ Level* LevelParser::parseLevel(const char* levelFile)
         {
             if(e->FirstChildElement()->Value() == std::string("object"))
             {
-                parseObjectLayer(e, pLevel->getLayers(), pLevel);
+                std::cout << "parseObjectLayer()\n";
+                parseObjectLayer(e, pLevel->getObjectLayers(), pLevel);
             }
             else if(e->FirstChildElement()->Value() == std::string("data") ||
                     (e->FirstChildElement()->NextSiblingElement() != 0 && e->FirstChildElement()->NextSiblingElement()->Value() == std::string("data")))
             {
+                std::cout << "parseTileLayer()\n";
                 parseTileLayer(e, pLevel->getLayers(), pLevel->getTilesets(), pLevel->getCollisionLayers());
             }
         }
@@ -157,6 +171,7 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>
 
 void LevelParser::parseTextures(TiXmlElement *pTextureRoot)
 {
+    std::cout << "parseTextures value: " << pTextureRoot->Attribute("value") << " name: " << pTextureRoot->Attribute("name") << "\n";
     TheTextureManager::Instance()->load(pTextureRoot->Attribute("value"), pTextureRoot->Attribute("name"));
     // for (TiXmlNode *e = pTextureRoot->FirstChild(); e != nullptr; e = e->NextSiblingElement())
     // {
@@ -167,7 +182,7 @@ void LevelParser::parseTextures(TiXmlElement *pTextureRoot)
     // }
 }
 
-void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Layer*> *pLayers, Level* pLevel)
+void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<ObjectLayer*> *pLayers, Level* pLevel)
 {
     std::cout << "Entering parseObjectLayer\n";
     ObjectLayer* pObjectLayer = new ObjectLayer();
@@ -194,8 +209,6 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
                 int frameWidth = 0, frameHeight = 0;
                 int animRow = 0, animFrame = 0, animNumFrames = 0, frameCounter = 0, frameDelay = 10;
                 Direction facing = SOUTH;
-                // int animRow = 0, animFrame = 0, animNumFrames = 1, animCounter = 0, animSpeed = 1;
-                // int maxIntensity = 255;
                 int callbackID = 0;
 
                 e->Attribute("x", &x);
@@ -221,27 +234,6 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
                                 {
                                     property->Attribute("value", &frameHeight);
                                 }
-                                // else if (property->Attribute("name") == std::string("scale"))
-                                // {
-                                //     // scale = property->Attribute("value", &scale);
-                                //     property->Attribute("value", &scale);
-                                // }
-                                // else if (property->Attribute("name") == std::string("rotation"))
-                                // {
-                                //     property->Attribute("value", &rotation);
-                                // }
-                                // else if (property->Attribute("name") == std::string("alpha"))
-                                // {
-                                //     property->Attribute("value", &alpha);
-                                // }
-                                // else if (property->Attribute("name") == std::string("xFlip") && property->Attribute("value") != nullptr)
-                                // {
-                                //     xFlip = 0 == std::string("true").compare(property->Attribute("value"));
-                                // }
-                                // else if (property->Attribute("name") == std::string("yFlip") && property->Attribute("value") != nullptr)
-                                // {
-                                //     yFlip = 0 == std::string("true").compare(property->Attribute("value"));
-                                // }
                                 else if (property->Attribute("name") == std::string("animRow"))
                                 {
                                     property->Attribute("value", &animRow);
@@ -263,10 +255,6 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
                                 {
                                     property->Attribute("value", &frameDelay);
                                 }
-                                // else if (property->Attribute("name") == std::string("maxIntensity"))
-                                // {
-                                //     property->Attribute("value", &maxIntensity);
-                                // }
                                 else if (property->Attribute("name") == std::string("facing"))
                                 {
                                     facing = stringToDirection(property->Attribute("value"));
@@ -279,7 +267,6 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Lay
                         }
                     }
                 }
-                // FIX THIS LINE WHEN USING THIS
                 pGameObject->load(std::unique_ptr<LoaderParams>( new LoaderParams(textureID, position, frameWidth, frameHeight, animRow, animFrame, animNumFrames, frameCounter, frameDelay, facing, callbackID)));
                 if (type == "Player")
                 {

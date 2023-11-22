@@ -71,6 +71,6 @@ private:
 
 typedef GameObjectFactory TheGameObjectFactory;
 
-GameObjectFactory* GameObjectFactory::s_pInstance = 0;
+// GameObjectFactory* GameObjectFactory::s_pInstance = 0;
 
 #endif /* defined(__GameObjectFactory__) */

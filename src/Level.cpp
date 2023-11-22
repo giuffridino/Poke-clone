@@ -20,6 +20,11 @@ void Level::render(void)
         // std::cout << "rendering m_layers[" << i << "]\n";
         m_layers[i]->render();
     }
+    for (unsigned int i = 0; i < m_objectLayers.size(); i++)
+    {
+        // std::cout << "rendering m_objectLayers[" << i << "]\n";
+        m_objectLayers[i]->render();
+    }
 }
 
 void Level::update(void)
@@ -29,5 +34,9 @@ void Level::update(void)
     {
         // std::cout << "updating m_layers: " << m_layers[i] << "\n";
         m_layers[i]->update(this);
+    }
+    for (unsigned int i = 0; i < m_objectLayers.size(); i++)
+    {
+        m_objectLayers[i]->update(this);
     }
 }

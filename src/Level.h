@@ -5,6 +5,7 @@
 #include <string>
 #include "Player.h"
 #include "TileLayer.h"
+#include "ObjectLayer.h"
 
 struct Tileset
 {
@@ -29,6 +30,7 @@ public:
 
     std::vector<Tileset>* getTilesets(void) { return &m_tilesets; }
     std::vector<Layer*>* getLayers(void) { return &m_layers; }
+    std::vector<ObjectLayer*>* getObjectLayers(void) { return &m_objectLayers; }
     std::vector<TileLayer*>* getCollisionLayers(void) { return &m_collisionLayers; }
     const std::vector<TileLayer*>& getCollidableLayers(void) { return m_collisionLayers; }
 
@@ -43,6 +45,7 @@ private:
 
     std::vector<Tileset> m_tilesets;
     std::vector<Layer*> m_layers;
+    std::vector<ObjectLayer*> m_objectLayers;
     std::vector<TileLayer*> m_collisionLayers;
 };
 #endif /* defined(__Level__) */

@@ -42,6 +42,7 @@ public:
 	// bool dying(void) { return m_bDying; }
 
 	std::string getTextureID(void) { return m_textureID; }
+	Direction getFacing() { return m_facing; }
 
 protected:
 	GameObject(void) : m_textureID(""),

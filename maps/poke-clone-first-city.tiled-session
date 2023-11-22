@@ -27,6 +27,7 @@
     "openFiles": [
     ],
     "project": "poke-clone-first-city.tiled-project",
+    "property.type": "string",
     "recentFiles": [
         "test-first-city.tmx"
     ],

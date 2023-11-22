@@ -1,5 +1,6 @@
 #include "ObjectLayer.h"
 #include "Game.h"
+#include "Level.h"
 #include <iostream>
 
 ObjectLayer::~ObjectLayer()
@@ -13,10 +14,10 @@ ObjectLayer::~ObjectLayer()
 
 void ObjectLayer::update(Level *pLevel)
 {
-	// if(pLevel->getPlayer()->getPosition().x + pLevel->getPlayer()->getWidth() < TheGame::Instance()->getGameWidth())
-	// {
-		// m_collisionManager.checkPlayerTileCollision(pLevel->getPlayer(), pLevel->getCollidableLayers());
-	// }
+	if(pLevel->getPlayer()->getPosition().x + pLevel->getPlayer()->getWidth() < TheGame::Instance()->getGameWidth())
+	{
+		m_collisionManager.checkPlayerTileCollision(pLevel->getPlayer(), pLevel->getCollidableLayers());
+	}
 	if (!m_gameObjects.empty())
 	{
 		for(std::vector<GameObject*>::iterator it = m_gameObjects.begin(); it != m_gameObjects.end();)

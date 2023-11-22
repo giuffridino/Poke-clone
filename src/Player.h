@@ -2,10 +2,12 @@
 #ifndef __Player__
 #define __Player__
 
-#include <raylib.h>
-#include<string>
+#include "raylib.h"
+#include <string>
 #include "TrainerObject.h"
 #include "Constants.h"
+#include "GameObjectFactory.h"
+// #include "CollisionManager.h"
 
 class Player : public TrainerObject
 {
@@ -44,12 +46,12 @@ private:
 
 };
 
-// class PlayerCreator : public BaseCreator
-// {
-// 	GameObject* createGameObject(void) const
-// 	{
-// 		return new Player();
-// 	}
-// };
+class PlayerCreator : public BaseCreator
+{
+	GameObject* createGameObject(void) const
+	{
+		return new Player();
+	}
+};
 
 #endif /* defined(__Player__) */

@@ -19,7 +19,7 @@ void TileLayer::update(Level *pLevel)
 
 void TileLayer::render(void)
 {
-    std::cout << "m_tileSize: " << m_tileSize << "\n";
+    std::cout << "rendering TileLayer\n";
     int x, y, xOffset, yOffset = 0;
 
     y = int(m_position.y) / m_tileSize;

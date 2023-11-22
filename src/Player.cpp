@@ -2,15 +2,16 @@
 #include "TextureManager.h"
 #include "Constants.h"
 
-
 Player::Player()
 {
     TheTextureManager::Instance()->load("assets/trainer-character.png", "main-trainer");
+    TheTextureManager::Instance()->load("assets/trainer-character.png", "trainer");
 }
 
 Player::~Player()
 {
     TheTextureManager::Instance()->unload("main-trainer");
+    TheTextureManager::Instance()->unload("trainer");
 }
 
 void Player::load(const std::unique_ptr<LoaderParams> &pParams)
@@ -60,7 +61,16 @@ void Player::update()
 
 void Player::draw()
 {
-    TheTextureManager::Instance()->drawFrame("main-trainer", m_position.x, m_position.y, m_frameWidth, m_frameHeight, m_animRow, m_animFrame, Vector2{0.0f, 0.0f});
+    // std::cout << "m_position.x: " << m_position.x << "\n";
+    // std::cout << "m_position.y: " << m_position.y << "\n";
+    // std::cout << "m_frameWidth: " << m_frameWidth << "\n";
+    // std::cout << "m_frameHeight: " << m_frameHeight << "\n";
+    // std::cout << "textureID: " << m_textureID << "\n";
+    // std::cout << "numFrames: " << m_animNumFrames << "\n";
+    // std::cout << "m_animRow: " << m_animRow << "\n";
+    // std::cout << "m_animFrame: " << m_animFrame << "\n";
+    // TheTextureManager::Instance()->drawFrame("player", 64, 64, 16, 32, 1, 1, Vector2{0.0f, 0.0f});
+    TheTextureManager::Instance()->drawFrame(m_textureID, m_position.x, m_position.y, m_frameWidth, m_frameHeight, m_animRow, m_animFrame, Vector2{0.0f, 0.0f});
 }
 
 Direction Player::getInputDirection()
