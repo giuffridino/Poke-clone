@@ -1,17 +1,18 @@
 #include "Player.h"
 #include "TextureManager.h"
 #include "Constants.h"
+#include "TileLayer.h"
 
 Player::Player()
 {
-    TheTextureManager::Instance()->load("assets/trainer-character.png", "main-trainer");
-    TheTextureManager::Instance()->load("assets/trainer-character.png", "trainer");
+    // TheTextureManager::Instance()->load("assets/trainer-character.png", "main-trainer");
+    // TheTextureManager::Instance()->load("assets/trainer-character.png", "trainer");
 }
 
 Player::~Player()
 {
-    TheTextureManager::Instance()->unload("main-trainer");
-    TheTextureManager::Instance()->unload("trainer");
+    // TheTextureManager::Instance()->unload("main-trainer");
+    // TheTextureManager::Instance()->unload("trainer");
 }
 
 void Player::load(const std::unique_ptr<LoaderParams> &pParams)
@@ -21,6 +22,7 @@ void Player::load(const std::unique_ptr<LoaderParams> &pParams)
 
 void Player::update()
 {
+    bool checkCollision = false;
     if (m_moveTime <= 0 && !m_bIsMoving)
     {
         Direction inputDir = getInputDirection();
@@ -30,8 +32,20 @@ void Player::update()
             m_lastFacing = m_facing;
             m_moveTime = m_framesToCrossOneTile; // Set move time for one tile movement
             m_bIsMoving = true;
+            checkCollision = true;
         }
     }
+    if (checkCollision)
+    {
+        if (checkPlayerTileCollision())
+        {
+            // std::cout << "collision in player\n";
+            m_moveTime = 0;
+            m_bIsMoving = false;
+        }
+        checkCollision = false;
+    }
+    
     if ( m_moveTime > 0)
     {
         m_moveTime--;
@@ -56,6 +70,7 @@ void Player::update()
         m_facing = NONE;
         // m_lastFacing = NONE;
         m_bIsMoving = false;
+        // std::cout << "inner m_position: " << m_position.x << " " << m_position.y << "\n";
     }
 }
 
@@ -69,7 +84,6 @@ void Player::draw()
     // std::cout << "numFrames: " << m_animNumFrames << "\n";
     // std::cout << "m_animRow: " << m_animRow << "\n";
     // std::cout << "m_animFrame: " << m_animFrame << "\n";
-    // TheTextureManager::Instance()->drawFrame("player", 64, 64, 16, 32, 1, 1, Vector2{0.0f, 0.0f});
     TheTextureManager::Instance()->drawFrame(m_textureID, m_position.x, m_position.y, m_frameWidth, m_frameHeight, m_animRow, m_animFrame, Vector2{0.0f, 0.0f});
 }
 
@@ -92,6 +106,71 @@ Direction Player::getInputDirection()
         return SOUTH;
     }
     return NONE;
+}
+
+bool Player::checkPlayerTileCollision()
+{
+    // std::vector<TileLayer *> pCollisionLayers = (*m_collisionLayers);
+    for (std::vector<TileLayer *>::const_iterator it = (*m_collisionLayers).begin(); it != (*m_collisionLayers).end(); ++it)
+    {
+        TileLayer *pTileLayer = (*it);
+        std::vector<std::vector<int>> tiles = pTileLayer->getTileIDs();
+        int tileColumn, tileRow, tileID = 0;
+        if (m_facing == SOUTH)
+        {
+            tileColumn = m_position.x / pTileLayer->getTileSize();
+            tileRow = (m_position.y + 32) / pTileLayer->getTileSize();
+            tileID = tiles[tileRow][tileColumn];
+            // std::cout << "m_position: " << m_position.x << " " << m_position.y << "\n";
+            // std::cout << "tileColumn: " << tileColumn << "\n";
+            // std::cout << "tileRow: " << tileRow << "\n";
+            // std::cout << "tileID: " << tileID << "\n";
+            // std::cout << "x: " << x << "\n";
+            // std::cout << "y: " << y << "\n";
+        }
+        else if (m_facing == NORTH)
+        {
+            tileColumn = m_position.x / pTileLayer->getTileSize();
+            tileRow = m_position.y / pTileLayer->getTileSize();
+            tileID = tiles[tileRow][tileColumn];
+            // std::cout << "m_position: " << m_position.x << " " << m_position.y << "\n";
+            // std::cout << "tileColumn: " << tileColumn << "\n";
+            // std::cout << "tileRow: " << tileRow << "\n";
+            // std::cout << "tileID: " << tileID << "\n";
+            // std::cout << "x: " << x << "\n";
+            // std::cout << "y: " << y << "\n";
+        }
+        else if (m_facing == EAST)
+        {
+            tileColumn = (m_position.x + 16) / pTileLayer->getTileSize();
+            tileRow = (m_position.y + 16) / pTileLayer->getTileSize();
+            tileID = tiles[tileRow][tileColumn];
+            // std::cout << "m_position: " << m_position.x << " " << m_position.y << "\n";
+            // std::cout << "tileColumn: " << tileColumn << "\n";
+            // std::cout << "tileRow: " << tileRow << "\n";
+            // std::cout << "tileID: " << tileID << "\n";
+            // std::cout << "x: " << x << "\n";
+            // std::cout << "y: " << y << "\n";
+        }
+        else if (m_facing == WEST)
+        {
+            tileColumn = (m_position.x - 16) / pTileLayer->getTileSize();
+            tileRow = (m_position.y + 16) / pTileLayer->getTileSize();
+            tileID = tiles[tileRow][tileColumn];
+            // std::cout << "m_position: " << m_position.x << " " << m_position.y << "\n";
+            // std::cout << "tileColumn: " << tileColumn << "\n";
+            // std::cout << "tileRow: " << tileRow << "\n";
+            // std::cout << "tileID: " << tileID << "\n";
+            // std::cout << "x: " << x << "\n";
+            // std::cout << "y: " << y << "\n";
+        }
+        if (tileID != 0)
+        {
+            // std::cout << "COLLISION\n"; 
+            return true;
+        }
+    }
+    return false;
 }
 
 

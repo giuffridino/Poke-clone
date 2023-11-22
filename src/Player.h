@@ -4,10 +4,13 @@
 
 #include "raylib.h"
 #include <string>
+#include <vector>
 #include "TrainerObject.h"
 #include "Constants.h"
 #include "GameObjectFactory.h"
 // #include "CollisionManager.h"
+
+class TileLayer;
 
 class Player : public TrainerObject
 {
@@ -24,7 +27,12 @@ public:
     Vector2 getPosition() { return m_position; }
     int getWidth() { return m_frameWidth; }
 
+    std::vector<TileLayer*>* getCollisionLayers() { return m_collisionLayers; }
+    void setCollisionLayers(std::vector<TileLayer*>* layers) { m_collisionLayers = layers; }
+    bool checkPlayerTileCollision();
+
 private:
+    std::vector<TileLayer*>* m_collisionLayers;
     // Texture2D m_texture;
     // std::string m_textureID;
     // Vector2 m_position = {0.0f, 0.0f};

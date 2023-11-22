@@ -47,7 +47,7 @@ void CollisionManager::checkPlayerTileCollision(Player *pPlayer, const std::vect
         if (tileID != 0)
         {
             pPlayer->collision();
-            std::cout << "collision in CollisionManager::checkPlayerTileCollision\n"; 
+            // std::cout << "collision in CollisionManager::checkPlayerTileCollision\n"; 
         }
         
     }

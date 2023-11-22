@@ -2,6 +2,7 @@
     "activeFile": "",
     "expandedProjectPaths": [
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
             "scaleInDock": 1
@@ -22,8 +23,13 @@
         }
     },
     "last.imagePath": "C:/raylib-projects/Poke-clone/maps",
+    "map.height": 15,
     "map.lastUsedFormat": "tmx",
     "map.layerDataFormat": null,
+    "map.orientation": 1,
+    "map.tileHeight": 32,
+    "map.tileWidth": 32,
+    "map.width": 20,
     "openFiles": [
     ],
     "project": "poke-clone-first-city.tiled-project",
@@ -32,8 +38,13 @@
         "test-first-city.tmx"
     ],
     "tileset.embedInMap": true,
+    "tileset.margin": 2,
+    "tileset.spacing": 2,
     "tileset.tileSize": {
         "height": 16,
         "width": 16
-    }
+    },
+    "tileset.transparentColor": "#ff00ff",
+    "tileset.type": 0,
+    "tileset.useTransparentColor": false
 }

@@ -75,6 +75,7 @@ Level* LevelParser::parseLevel(const char* levelFile)
             }
         }
     }
+    pLevel->getPlayer()->setCollisionLayers(pLevel->getCollisionLayers());
     std::cout << "Done with parselevel\n";
     return pLevel;
 }
