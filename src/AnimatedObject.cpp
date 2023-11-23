@@ -29,7 +29,3 @@ void AnimatedObject::update()
 void AnimatedObject::clean()
 {
 }
-
-void AnimatedObject::collision()
-{
-}

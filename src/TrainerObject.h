@@ -17,7 +17,6 @@ public:
     virtual void draw(void);
     virtual void update(void);
     virtual void clean(void){};
-    virtual void collision(void) {};
     virtual std::string type(void) { return "TrainerObject"; }
 
 protected:

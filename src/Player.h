@@ -31,7 +31,7 @@ public:
     void setCollisionLayers(std::vector<TileLayer*>* layers) { m_collisionLayers = layers; }
     std::vector<TileLayer*>* getRedrawLayers() { return m_redrawLayers; }
     void setRedrawLayers(std::vector<TileLayer*>* layers) { m_redrawLayers = layers; }
-    bool checkPlayerTileCollision();
+    // bool checkPlayerTileCollision();
     // bool checkPlayerRedrawTile();
 
 private:

@@ -210,7 +210,12 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Obj
         if (e->Value() == std::string("object"))
         {
             std::string type = e->Attribute("type");
-            GameObject* pGameObject = GameObjectFactory::Instance()->create(type);
+            // if (type == std::string("InteractableObject"))
+            // {
+            //     std::cout << "InteractableObject parsed on map\n";
+            // }
+            
+            GameObject* pGameObject = TheGameObjectFactory::Instance()->create(type);
             if (!pGameObject)
             {
                 std::cout << "Failed to create pGameObject: " << type << "\n";
@@ -287,7 +292,14 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Obj
                 {
                     pLevel->setPlayer(dynamic_cast<Player*>(pGameObject));
                 }
-                pObjectLayer->getGameObjects()->push_back(pGameObject);
+                if (type == std::string("InteractableObject"))
+                {
+                    pObjectLayer->getInteractableGameObjects()->push_back(pGameObject);
+                }
+                else
+                {
+                    pObjectLayer->getGameObjects()->push_back(pGameObject);
+                }
             }
             // std::cout << "x: " << x << "\n";
             // std::cout << "y: " << y << "\n";

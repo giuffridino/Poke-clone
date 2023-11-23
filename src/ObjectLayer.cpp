@@ -24,24 +24,25 @@ void ObjectLayer::update(Level *pLevel)
 	{
 		for(std::vector<GameObject*>::iterator it = m_gameObjects.begin(); it != m_gameObjects.end();)
         {
+            (*it)->update();
             // std::cout << (*it)->type() << "\n";
-            if((*it)->getPosition().x <= TheGame::Instance()->getGameWidth())
-            {
-                (*it)->setUpdating(true);
-                (*it)->update();
-            }
-            else
-            {
-                if((*it)->type() != std::string("Player"))
-                {
-                    (*it)->setUpdating(false);
-                    // (*it)->scroll(TheGame::Instance()->getGameScrollSpeed());
-                }
-                else
-                {
-                    (*it)->update();
-                }
-            }
+            // if((*it)->getPosition().x <= TheGame::Instance()->getGameWidth())
+            // {
+            //     (*it)->setUpdating(true);
+            //     (*it)->update();
+            // }
+            // else
+            // {
+            //     if((*it)->type() != std::string("Player"))
+            //     {
+            //         (*it)->setUpdating(false);
+            //         // (*it)->scroll(TheGame::Instance()->getGameScrollSpeed());
+            //     }
+            //     else
+            //     {
+            //         (*it)->update();
+            //     }
+            // }
             
             // check if dead or off screen
             if((*it)->getPosition().x < (0 - (*it)->getWidth()) || (*it)->getPosition().y > (TheGame::Instance()->getGameHeight()) || ((*it)->dead()))

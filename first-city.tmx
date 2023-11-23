@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="80" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="32">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="80" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="33">
  <properties>
   <property name="animated-object" value="maps/animatated-sprites.png"/>
   <property name="player-trainer" value="assets/trainer-character.png"/>
@@ -13,7 +13,7 @@
  <tileset firstgid="589" name="Redrawable-Layer-PalletTown" tilewidth="16" tileheight="16" tilecount="49" columns="7">
   <image source="maps/Redrawable-Layer-PalletTown.png" width="112" height="112"/>
  </tileset>
- <objectgroup id="3" name="Object Layer 1" visible="0">
+ <objectgroup id="3" name="PlayerObject-AnimatedObjects">
   <object id="8" name="Flower1" type="AnimatedObject" x="80" y="192" width="16" height="16">
    <properties>
     <property name="animFrame" type="int" value="0"/>
@@ -214,6 +214,7 @@
     <property name="width" type="int" value="16"/>
    </properties>
   </object>
+  <object id="32" name="Sign1" type="InteractableObject" x="144" y="176" width="16" height="16"/>
   <object id="6" name="Player-trainer" type="Player" x="176" y="128" width="16" height="32">
    <properties>
     <property name="animFrame" type="int" value="0"/>
