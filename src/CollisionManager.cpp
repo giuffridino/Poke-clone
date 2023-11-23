@@ -2,6 +2,7 @@
 // #include "Collision.h"
 #include "GameObject.h"
 #include "Player.h"
+#include "raymath.h"
 
 CollisionManager* CollisionManager::s_pInstance = nullptr;
 
@@ -41,6 +42,25 @@ bool CollisionManager::checkPlayerTileCollision(Player *pPlayer, const std::vect
         {
             // std::cout << "COLLISION\n"; 
             return true;
+        }
+    }
+    return false;
+}
+
+bool CollisionManager::checkPlayerInteractableObject(Player* pPlayer, const std::vector<GameObject*> &interactableObjects)
+{
+    // std::cout << "checkPlayerInteractableObject in CollisionManager\n";
+    if (pPlayer->getFacing() == NORTH)
+    {
+        for (unsigned int i = 0; i < interactableObjects.size(); i++)
+        {
+            // std::cout << "pPlayer->getPosition(): " << pPlayer->getPosition().x << " " << pPlayer->getPosition().y << "\n";
+            // std::cout << "interactableObjects[i]->getPosition(): " << interactableObjects[i]->getPosition().x << " " << interactableObjects[i]->getPosition().y << "\n";
+            if (Vector2Equals(pPlayer->getPosition(), {interactableObjects[i]->getPosition().x, interactableObjects[i]->getPosition().y}))
+            {
+                return true;
+            }
+            
         }
     }
     return false;

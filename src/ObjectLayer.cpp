@@ -1,6 +1,7 @@
 #include "ObjectLayer.h"
 #include "Game.h"
 #include "Level.h"
+#include "CollisionManager.h"
 #include <iostream>
 
 ObjectLayer::~ObjectLayer()
@@ -24,7 +25,16 @@ void ObjectLayer::update(Level *pLevel)
 	{
 		for(std::vector<GameObject*>::iterator it = m_gameObjects.begin(); it != m_gameObjects.end();)
         {
+            // std::cout << "ObjectLayer::update()\n";
             (*it)->update();
+            if((*it)->type() == std::string("Player"))
+            {
+                // std::cout << "Checking interaction at player position: " << (*it)->getPosition().x << " " << (*it)->getPosition().y << "\n";
+                if(TheCollisionManager::Instance()->checkPlayerInteractableObject(dynamic_cast<Player*>(*it), m_interactableGameObjects))
+                {
+                    std::cout << "Interaction detected\n";
+                }
+            }
             // std::cout << (*it)->type() << "\n";
             // if((*it)->getPosition().x <= TheGame::Instance()->getGameWidth())
             // {

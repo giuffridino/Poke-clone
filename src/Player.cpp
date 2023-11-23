@@ -76,7 +76,7 @@ void Player::update()
     }
     if (m_moveTime == 0) // Reset facing direction and moving status when one tile movement is done
     {
-        m_facing = NONE;
+        // m_facing = NONE;
         // m_lastFacing = NONE;
         m_bIsMoving = false;
         // std::cout << "inner m_position: " << m_position.x << " " << m_position.y << "\n";

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="80" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="33">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="80" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="39">
  <properties>
   <property name="animated-object" value="maps/animatated-sprites.png"/>
   <property name="player-trainer" value="assets/trainer-character.png"/>
@@ -215,6 +215,10 @@
    </properties>
   </object>
   <object id="32" name="Sign1" type="InteractableObject" x="144" y="176" width="16" height="16"/>
+  <object id="35" name="Sign2" type="InteractableObject" x="256" y="256" width="16" height="16"/>
+  <object id="36" name="Mailbox1" type="InteractableObject" x="208" y="112" width="16" height="16"/>
+  <object id="37" name="Mailbox2" type="InteractableObject" x="64" y="112" width="16" height="16"/>
+  <object id="38" name="WoodenSign1" type="InteractableObject" x="80" y="224" width="16" height="16"/>
   <object id="6" name="Player-trainer" type="Player" x="176" y="128" width="16" height="32">
    <properties>
     <property name="animFrame" type="int" value="0"/>
