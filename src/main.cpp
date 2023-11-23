@@ -2,29 +2,32 @@
 #include "iostream"
 // #include <raylib.h>
 #include "Player.h"
+#include "CameraManager.h"
 
 Color green = Color{20, 160, 133, 255};
 
-const int screenWidth = 1280;
-const int screenHeight = 960;
+const int screenWidth = 1200;
+const int screenHeight = 800;
 
 int main()
 {
     // InitWindow(screenWidth, screenHeight, "Poke-Clone");
     // Player player = Player();
     // SetTargetFPS(60);
-    if (Game::Instance()->init("Poke-Clone", screenWidth, screenHeight))
+    if (TheGame::Instance()->init("Poke-Clone", screenWidth, screenHeight))
     {
         // Player player = Player();
-        while (Game::Instance()->running())
+        while (TheGame::Instance()->running())
         {
             BeginDrawing();
+            TheCameraManager::Instance()->beginCameraMode();
             ClearBackground(green);
-            // Game::Instance()->handleEvents();
-			Game::Instance()->update();
-			Game::Instance()->render();
+            // TheGame::Instance()->handleEvents();
+			TheGame::Instance()->update();
+			TheGame::Instance()->render();
             // player.update();
             // player.draw();
+            TheCameraManager::Instance()->endCameraMode();
             EndDrawing();
         }
         
@@ -34,17 +37,6 @@ int main()
         std::cout << "Game init failure --\n";
         return 1;
     }
-    
-
-    // while (!WindowShouldClose())
-    // {
-    //     BeginDrawing();
-    //     ClearBackground(green);
-
-    //     player.update();
-    //     player.draw();
-    //     EndDrawing();
-    // }
 
     CloseWindow();
     return 0;

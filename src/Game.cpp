@@ -5,6 +5,7 @@
 #include "Level.h"
 #include <iostream>
 #include "GameObjectFactory.h"
+#include "CameraManager.h"
 
 Game *Game::s_pInstance = nullptr;
 
@@ -31,8 +32,8 @@ bool Game::init(const char *title, int width, int height)
     LevelParser levelParser;
     m_pLevel = levelParser.parseLevel("first-city.tmx");
     
-    // TheGameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
-    // m_player = Player();
+    TheCameraManager::Instance()->setCameraTarget(m_pLevel->getPlayer()->getPosition());
+    
     return true;
 }
 
@@ -42,6 +43,7 @@ void Game::update()
     {
         m_pLevel->update();
     }
+    TheCameraManager::Instance()->setCameraTarget(m_pLevel->getPlayer()->getPosition());
     // for (std::vector<GameObject *>::size_type i = 0; i < m_gameObjects.size(); i++)
 	// {
 	// 	m_gameObjects[i]->update();

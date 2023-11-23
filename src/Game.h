@@ -33,11 +33,11 @@ public:
 private:
     Game();
     static Game* s_pInstance;
-    std::vector<GameObject*> m_gameObjects;
+    // std::vector<GameObject*> m_gameObjects;
     int m_gameWidth;
 	int m_gameHeight;
-    GameObject* m_player;
-    GameObject* m_player2;
+    // GameObject* m_player;
+    // GameObject* m_player2;
     Level* m_pLevel = nullptr;
     // Player m_player;
 };
