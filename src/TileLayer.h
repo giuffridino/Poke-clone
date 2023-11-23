@@ -16,7 +16,8 @@ public:
     virtual ~TileLayer(void){};
 
     virtual void update(Level *pLevel);
-    virtual void render(void);
+    virtual void render(Level *pLevel);
+    virtual void renderOneTile(Vector2 playerPosition);
 
     void setTileIDs(const std::vector<std::vector<int>> &data) { m_tileIDs = data; }
     void setTileSize(int tileSize) { m_tileSize = tileSize; }

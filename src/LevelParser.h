@@ -14,7 +14,7 @@ public:
 private:
     void parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>* pTilesets);
 
-    void parseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*> *pLayers, const std::vector<Tileset>* pTilesets, std::vector<TileLayer*> *pCollisionLayers);
+    void parseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*> *pLayers, const std::vector<Tileset>* pTilesets, std::vector<TileLayer*> *pCollisionLayers, std::vector<TileLayer*> *pRedrawLayers);
 
     void parseTextures(TiXmlElement* pTextureRoot);
 

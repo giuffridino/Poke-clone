@@ -53,6 +53,42 @@ void CollisionManager::checkPlayerTileCollision(Player *pPlayer, const std::vect
     }
 }
 
+void CollisionManager::checkPlayerRedrawTile(Player* pPlayer, const std::vector<TileLayer*> &redrawLayers)
+{
+    for (std::vector<TileLayer *>::const_iterator it = redrawLayers.begin(); it != redrawLayers.end(); ++it)
+    {
+        TileLayer *pTileLayer = (*it);
+        std::vector<std::vector<int>> tiles = pTileLayer->getTileIDs();
+
+        // Vector2 layerPos = pTileLayer->getPosition();
+
+        // int x, y;
+        int tileColumn, tileRow, tileID = 0;
+
+        // x = layerPos.x;
+        // y = layerPos.y;
+        // x = layerPos.x / pTileLayer->getTileSize();
+        // y = layerPos.y / pTileLayer->getTileSize();
+
+        tileColumn = (pPlayer->getPosition().x) / pTileLayer->getTileSize();
+        tileRow = (pPlayer->getPosition().y + 16) / pTileLayer->getTileSize();
+        tileID = tiles[tileRow][tileColumn];
+        // std::cout << "m_position: " << m_position.x << " " << m_position.y << "\n";
+        // std::cout << "tileColumn: " << tileColumn << "\n";
+        // std::cout << "tileRow: " << tileRow << "\n";
+        // std::cout << "tileID: " << tileID << "\n";
+        // std::cout << "x: " << x << "\n";
+        // std::cout << "y: " << y << "\n";
+
+        if (tileID != 0)
+        {
+            pTileLayer->renderOneTile(Vector2 {pPlayer->getPosition().x, (pPlayer->getPosition().y + 16)});
+            // std::cout << "redraw layer in CollisionManager::checkRedrawTile\n"; 
+        }
+        
+    }
+}
+
 Rectangle *CollisionManager::getGameObjectRect(GameObject *pGameObject)
 {
     Rectangle *pRect = new Rectangle();

@@ -13,6 +13,7 @@ class CollisionManager
 {
 public:
     void checkPlayerTileCollision(Player* pPlayer, const std::vector<TileLayer*> &collisionLayers);
+    void checkPlayerRedrawTile(Player* pPlayer, const std::vector<TileLayer*> &redrawLayers);
 
 private:
     Rectangle *getGameObjectRect(GameObject *pGameObject);

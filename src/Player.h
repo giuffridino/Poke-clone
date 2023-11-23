@@ -29,10 +29,14 @@ public:
 
     std::vector<TileLayer*>* getCollisionLayers() { return m_collisionLayers; }
     void setCollisionLayers(std::vector<TileLayer*>* layers) { m_collisionLayers = layers; }
+    std::vector<TileLayer*>* getRedrawLayers() { return m_redrawLayers; }
+    void setRedrawLayers(std::vector<TileLayer*>* layers) { m_redrawLayers = layers; }
     bool checkPlayerTileCollision();
+    // bool checkPlayerRedrawTile();
 
 private:
     std::vector<TileLayer*>* m_collisionLayers;
+    std::vector<TileLayer*>* m_redrawLayers;
     // Texture2D m_texture;
     // std::string m_textureID;
     // Vector2 m_position = {0.0f, 0.0f};

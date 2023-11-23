@@ -31,6 +31,8 @@ public:
     std::vector<Tileset>* getTilesets(void) { return &m_tilesets; }
     std::vector<Layer*>* getLayers(void) { return &m_layers; }
     std::vector<ObjectLayer*>* getObjectLayers(void) { return &m_objectLayers; }
+    std::vector<TileLayer*>* getRedrawLayers(void) { return &m_redrawLayers; }
+    const std::vector<TileLayer*>& getRedrawableLayers(void) { return m_redrawLayers; }
     std::vector<TileLayer*>* getCollisionLayers(void) { return &m_collisionLayers; }
     const std::vector<TileLayer*>& getCollidableLayers(void) { return m_collisionLayers; }
 
@@ -47,5 +49,6 @@ private:
     std::vector<Layer*> m_layers;
     std::vector<ObjectLayer*> m_objectLayers;
     std::vector<TileLayer*> m_collisionLayers;
+    std::vector<TileLayer*> m_redrawLayers;
 };
 #endif /* defined(__Level__) */

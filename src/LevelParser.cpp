@@ -71,11 +71,12 @@ Level* LevelParser::parseLevel(const char* levelFile)
                     (e->FirstChildElement()->NextSiblingElement() != 0 && e->FirstChildElement()->NextSiblingElement()->Value() == std::string("data")))
             {
                 std::cout << "parseTileLayer()\n";
-                parseTileLayer(e, pLevel->getLayers(), pLevel->getTilesets(), pLevel->getCollisionLayers());
+                parseTileLayer(e, pLevel->getLayers(), pLevel->getTilesets(), pLevel->getCollisionLayers(), pLevel->getRedrawLayers());
             }
         }
     }
     pLevel->getPlayer()->setCollisionLayers(pLevel->getCollisionLayers());
+    pLevel->getPlayer()->setRedrawLayers(pLevel->getRedrawLayers());
     std::cout << "Done with parselevel\n";
     return pLevel;
 }
@@ -104,11 +105,12 @@ void LevelParser::parseTilesets(TiXmlElement* pTilesetRoot, std::vector<Tileset>
     // std::cout << "Done parsetilesets\n";
 }
 
-void LevelParser::parseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*> *pLayers, const std::vector<Tileset>* pTilesets, std::vector<TileLayer*> *pCollisionLayers)
+void LevelParser::parseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*> *pLayers, const std::vector<Tileset>* pTilesets, std::vector<TileLayer*> *pCollisionLayers, std::vector<TileLayer*> *pRedrawLayers)
 {
     TileLayer *pTileLayer = new TileLayer(m_tileSize, *pTilesets);
 
     bool collidable = false;
+    bool redrawable = false;
 
     std::vector<std::vector<int>> data;
 
@@ -127,6 +129,10 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>
                     if (property->Attribute("name") == std::string("collidable"))
                     {
                         collidable = true;
+                    }
+                    if (property->Attribute("name") == std::string("redrawable"))
+                    {
+                        redrawable = true;
                     }
                 }
             }
@@ -166,6 +172,11 @@ void LevelParser::parseTileLayer(TiXmlElement* pTileElement, std::vector<Layer*>
     if (collidable)
     {
         pCollisionLayers->push_back(pTileLayer);
+    }
+    else if (redrawable)
+    {
+        std::cout << "pushing back in pRedrawLayers\n";
+        pRedrawLayers->push_back(pTileLayer);
     }
     else
     {

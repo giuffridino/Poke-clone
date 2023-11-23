@@ -14,10 +14,12 @@ ObjectLayer::~ObjectLayer()
 
 void ObjectLayer::update(Level *pLevel)
 {
-	if(pLevel->getPlayer()->getPosition().x + pLevel->getPlayer()->getWidth() < TheGame::Instance()->getGameWidth())
-	{
-		m_collisionManager.checkPlayerTileCollision(pLevel->getPlayer(), pLevel->getCollidableLayers());
-	}
+    // std::cout << "ObjectLayer::update()\n";
+	// if(pLevel->getPlayer()->getPosition().x + pLevel->getPlayer()->getWidth() < TheGame::Instance()->getGameWidth())
+	// {
+	// 	m_collisionManager.checkPlayerRedrawTile(pLevel->getPlayer(), pLevel->getRedrawableLayers());
+	// 	// m_collisionManager.checkPlayerTileCollision(pLevel->getPlayer(), pLevel->getCollidableLayers());
+	// }
 	if (!m_gameObjects.empty())
 	{
 		for(std::vector<GameObject*>::iterator it = m_gameObjects.begin(); it != m_gameObjects.end();)
@@ -61,7 +63,7 @@ void ObjectLayer::update(Level *pLevel)
 	// }
 }
 
-void ObjectLayer::render()
+void ObjectLayer::render(Level *pLevel)
 {
 	// std::cout << "rendering objectlayer \n";
     for(unsigned int i = 0; i < m_gameObjects.size(); i++)
@@ -72,4 +74,9 @@ void ObjectLayer::render()
             m_gameObjects[i]->draw();
         }
     }
+    // if(pLevel->getPlayer()->getPosition().x + pLevel->getPlayer()->getWidth() < TheGame::Instance()->getGameWidth())
+	// {
+	// 	m_collisionManager.checkPlayerRedrawTile(pLevel->getPlayer(), pLevel->getRedrawableLayers());
+	// 	// m_collisionManager.checkPlayerTileCollision(pLevel->getPlayer(), pLevel->getCollidableLayers());
+	// }
 }

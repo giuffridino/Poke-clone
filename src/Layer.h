@@ -8,7 +8,7 @@ class Layer
 {
 public:
     virtual void update(Level *pLevel) = 0;
-    virtual void render(void) = 0;
+    virtual void render(Level *pLevel) = 0;
 
     virtual ~Layer(void) {};
 };

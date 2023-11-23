@@ -17,7 +17,7 @@ void TileLayer::update(Level *pLevel)
     // m_velocity.setX(1);
 }
 
-void TileLayer::render(void)
+void TileLayer::render(Level *pLevel)
 {
     // std::cout << "rendering TileLayer\n";
     int x, y, xOffset, yOffset = 0;
@@ -54,6 +54,23 @@ void TileLayer::render(void)
             // std::cout << "Done with drawTile\n";
         }
     }
+}
+
+void TileLayer::renderOneTile(Vector2 playerPosition)
+{
+    // int x, y;
+    // y = int(playerPosition.y) / m_tileSize;
+    // x = int(playerPosition.x) / m_tileSize;
+    // std::cout << "playerPosition:" << playerPosition.x << " " << playerPosition.y << "\n";
+    int id = getTileIDByPosition((int)playerPosition.x / m_tileSize, (int)playerPosition.y / m_tileSize);
+    if (id == 0)
+    {
+        std::cout << "ERROR: tile ID == 0 \n";
+        return;
+    }
+    Tileset tileset = getTilesetByID(id);
+    id--;
+    TextureManager::Instance()->drawTile(tileset.name, tileset.margin, tileset.spacing, playerPosition.x, playerPosition.y, m_tileSize, m_tileSize, (id - (tileset.firstGridID - 1)) / tileset.numColumns, (id - (tileset.firstGridID - 1)) % tileset.numColumns);
 }
 
 Tileset TileLayer::getTilesetByID(int tileID)
