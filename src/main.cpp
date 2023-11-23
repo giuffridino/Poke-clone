@@ -28,6 +28,7 @@ int main()
             // player.update();
             // player.draw();
             TheCameraManager::Instance()->endCameraMode();
+            // DrawFPS(GetScreenWidth() - 95, 10);
             EndDrawing();
         }
         

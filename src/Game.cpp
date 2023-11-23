@@ -6,6 +6,7 @@
 #include <iostream>
 #include "GameObjectFactory.h"
 #include "CameraManager.h"
+#include "AnimatedObject.h"
 
 Game *Game::s_pInstance = nullptr;
 
@@ -28,6 +29,7 @@ bool Game::init(const char *title, int width, int height)
     // m_gameObjects.push_back(m_player2);
 
     TheGameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
+    TheGameObjectFactory::Instance()->registerType("AnimatedObject", new AnimatedObjectCreator());
 
     LevelParser levelParser;
     m_pLevel = levelParser.parseLevel("first-city.tmx");

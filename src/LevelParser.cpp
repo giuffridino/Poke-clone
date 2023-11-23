@@ -220,8 +220,8 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Obj
                 // pGameObject->load(std::unique_ptr<LoaderParams>( new LoaderParams(textureID, m_position, frameWidth, frameHeight, animRow, animFrame, animNumFrames, frameCounter, frameDelay, facing, callbackID)));
                 std::string textureID;
                 Vector2 position;
-                int x, y;
-                int frameWidth = 0, frameHeight = 0;
+                int x = 0, y = 0;
+                int frameWidth = 16, frameHeight = 16;
                 int animRow = 0, animFrame = 0, animNumFrames = 0, frameCounter = 0, frameDelay = 10;
                 Direction facing = SOUTH;
                 int callbackID = 0;

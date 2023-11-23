@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="80" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="8">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="80" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="32">
  <properties>
+  <property name="animated-object" value="maps/animatated-sprites.png"/>
   <property name="player-trainer" value="assets/trainer-character.png"/>
  </properties>
  <tileset firstgid="1" name="Game Boy Advance - Pokemon FireRed LeafGreen - Pallet Town" tilewidth="16" tileheight="16" tilecount="528" columns="24">
@@ -12,7 +13,207 @@
  <tileset firstgid="589" name="Redrawable-Layer-PalletTown" tilewidth="16" tileheight="16" tilecount="49" columns="7">
   <image source="maps/Redrawable-Layer-PalletTown.png" width="112" height="112"/>
  </tileset>
- <objectgroup id="3" name="Object Layer 1">
+ <objectgroup id="3" name="Object Layer 1" visible="0">
+  <object id="8" name="Flower1" type="AnimatedObject" x="80" y="192" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="5"/>
+    <property name="animRow" type="int" value="1"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="8" name="Flower2" type="AnimatedObject" x="96" y="192" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="5"/>
+    <property name="animRow" type="int" value="1"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="8" name="Flower3" type="AnimatedObject" x="112" y="192" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="5"/>
+    <property name="animRow" type="int" value="1"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="8" name="Flower4" type="AnimatedObject" x="128" y="192" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="5"/>
+    <property name="animRow" type="int" value="1"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="8" name="Flower5" type="AnimatedObject" x="80" y="208" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="5"/>
+    <property name="animRow" type="int" value="1"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="8" name="Flower6" type="AnimatedObject" x="96" y="208" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="5"/>
+    <property name="animRow" type="int" value="1"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="8" name="Flower7" type="AnimatedObject" x="112" y="208" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="5"/>
+    <property name="animRow" type="int" value="1"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="8" name="Flower2" type="AnimatedObject" x="128" y="208" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="5"/>
+    <property name="animRow" type="int" value="1"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="9" name="Water1" type="AnimatedObject" x="112" y="272" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="8"/>
+    <property name="animRow" type="int" value="0"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="21" name="Water2" type="AnimatedObject" x="128" y="272" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="8"/>
+    <property name="animRow" type="int" value="0"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="22" name="Water3" type="AnimatedObject" x="144" y="272" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="8"/>
+    <property name="animRow" type="int" value="0"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="23" name="Water4" type="AnimatedObject" x="160" y="272" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="8"/>
+    <property name="animRow" type="int" value="0"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="24" name="Water5" type="AnimatedObject" x="112" y="288" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="8"/>
+    <property name="animRow" type="int" value="0"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="25" name="Water6" type="AnimatedObject" x="128" y="288" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="8"/>
+    <property name="animRow" type="int" value="0"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="26" name="Water7" type="AnimatedObject" x="144" y="288" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="8"/>
+    <property name="animRow" type="int" value="0"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="27" name="Water8" type="AnimatedObject" x="160" y="288" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="8"/>
+    <property name="animRow" type="int" value="0"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="28" name="Water9" type="AnimatedObject" x="112" y="304" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="8"/>
+    <property name="animRow" type="int" value="0"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="29" name="Water10" type="AnimatedObject" x="128" y="304" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="8"/>
+    <property name="animRow" type="int" value="0"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="30" name="Water11" type="AnimatedObject" x="144" y="304" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="8"/>
+    <property name="animRow" type="int" value="0"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
+  <object id="31" name="Water12" type="AnimatedObject" x="160" y="304" width="16" height="16">
+   <properties>
+    <property name="animFrame" type="int" value="0"/>
+    <property name="animNumFrames" type="int" value="8"/>
+    <property name="animRow" type="int" value="0"/>
+    <property name="height" type="int" value="16"/>
+    <property name="textureID" value="animated-object"/>
+    <property name="width" type="int" value="16"/>
+   </properties>
+  </object>
   <object id="6" name="Player-trainer" type="Player" x="176" y="128" width="16" height="32">
    <properties>
     <property name="animFrame" type="int" value="0"/>
@@ -35,7 +236,7 @@
    <property name="redrawable" value=""/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1zsKgEAMBcCw9/OLn/vfxO0UqyC4iMzAI01SviIRwJ+sJWK7ZC/PdoC2lkQPMzvANw21v+MtU82s1wAAQEJXf4e+nLP1PQAAAAAAAAAAAAAAALzhALz3CNk=
+   eJzt1kEKgzAQBdCQ+1VbUbuo3ZTe/wxGEAwiRV3UWt6DTzaTzYeBCQH4J00Moc1yj/tmgO+qV+zhmhngN5Vpf6+z3FIqew0AcGqPdM91Y55uu81eWWdv/X10Sf0UcXoHW/pb+g8AAAAAAAAAAAAAAABH6wEuGgvl
   </data>
  </layer>
  <layer id="2" name="Collisions Tile Layer" width="80" height="60">

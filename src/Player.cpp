@@ -46,8 +46,7 @@ void Player::update()
                 case NORTH: m_animRow = 1; break;
                 case WEST: m_animRow = 2; break;
                 case EAST: m_animRow = 3; break;
-                default:
-                    break;
+                default: break;
             }
             m_moveTime = 0;
             m_bIsMoving = false;
@@ -70,8 +69,7 @@ void Player::update()
             case NORTH: m_position.y -= m_speed; m_animRow = 1; break;
             case WEST: m_position.x -= m_speed; m_animRow = 2; break;
             case EAST: m_position.x += m_speed; m_animRow = 3; break;
-            default:
-                break;
+            default: break;
         }
     }
     if (m_moveTime == 0) // Reset facing direction and moving status when one tile movement is done
