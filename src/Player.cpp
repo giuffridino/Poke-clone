@@ -40,6 +40,15 @@ void Player::update()
         if (checkPlayerTileCollision())
         {
             // std::cout << "collision in player\n";
+            switch (m_facing)
+            {
+                case SOUTH: m_animRow = 0; break;
+                case NORTH: m_animRow = 1; break;
+                case WEST: m_animRow = 2; break;
+                case EAST: m_animRow = 3; break;
+                default:
+                    break;
+            }
             m_moveTime = 0;
             m_bIsMoving = false;
         }
@@ -57,12 +66,12 @@ void Player::update()
         }
         switch (m_facing)
         {
-        case SOUTH: m_position.y += m_speed; m_animRow = 0; break;
-        case NORTH: m_position.y -= m_speed; m_animRow = 1; break;
-        case WEST: m_position.x -= m_speed; m_animRow = 2; break;
-        case EAST: m_position.x += m_speed; m_animRow = 3; break;
-        default:
-            break;
+            case SOUTH: m_position.y += m_speed; m_animRow = 0; break;
+            case NORTH: m_position.y -= m_speed; m_animRow = 1; break;
+            case WEST: m_position.x -= m_speed; m_animRow = 2; break;
+            case EAST: m_position.x += m_speed; m_animRow = 3; break;
+            default:
+                break;
         }
     }
     if (m_moveTime == 0) // Reset facing direction and moving status when one tile movement is done
