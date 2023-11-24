@@ -3,7 +3,8 @@
  <properties>
   <property name="animated-object" value="maps/animatated-sprites.png"/>
   <property name="player-trainer" value="assets/trainer-character.png"/>
-  <property name="dialog" value="assets/speech-dialog.png"/>
+  <property name="speech-dialog" value="assets/speech-dialog.png"/>
+  <property name="sign-dialog" value="assets/sign-dialog.png"/>
  </properties>
  <tileset firstgid="1" name="Game Boy Advance - Pokemon FireRed LeafGreen - Pallet Town" tilewidth="16" tileheight="16" tilecount="528" columns="24">
   <image source="maps/Game Boy Advance - Pokemon FireRed LeafGreen - Pallet Town.png" width="384" height="365"/>

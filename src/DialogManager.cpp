@@ -10,7 +10,7 @@ void DialogManager::drawDialog(void)
 {
     // std::cout << "Drawing dialog\n";
     TheCameraManager::Instance()->endCameraMode();
-    TheTextureManager::Instance()->drawFrame("dialog", 0, 619, 1200, 181, 0, 0);
+    TheTextureManager::Instance()->drawFrame("sign-dialog", 0, 619, 1200, 181, 0, 0);
     TheCameraManager::Instance()->beginCameraMode();
     m_bDrawDialogLater = false;
 }
