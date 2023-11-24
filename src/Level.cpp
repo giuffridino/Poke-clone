@@ -1,4 +1,5 @@
 #include "Level.h"
+#include "DialogManager.h"
 #include <iostream>
 
 Level::Level(void) { }
@@ -30,6 +31,11 @@ void Level::render(void)
         // std::cout << "rendering m_redrawLayers[" << i << "]\n";
         m_redrawLayers[i]->render(this);
     }
+    if (TheDialogManager::Instance()->getDrawDialogLater())
+    {
+        TheDialogManager::Instance()->drawDialog();
+    }
+    
 }
 
 void Level::update(void)

@@ -3,6 +3,7 @@
 #include "GameObject.h"
 #include "Player.h"
 #include "raymath.h"
+#include "DialogManager.h"
 
 CollisionManager* CollisionManager::s_pInstance = nullptr;
 
@@ -58,6 +59,7 @@ bool CollisionManager::checkPlayerInteractableObject(Player* pPlayer, const std:
             // std::cout << "interactableObjects[i]->getPosition(): " << interactableObjects[i]->getPosition().x << " " << interactableObjects[i]->getPosition().y << "\n";
             if (Vector2Equals(pPlayer->getPosition(), {interactableObjects[i]->getPosition().x, interactableObjects[i]->getPosition().y}))
             {
+                // TheDialogManager::Instance()->drawDialog();
                 return true;
             }
             
