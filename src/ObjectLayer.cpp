@@ -91,12 +91,16 @@ void ObjectLayer::render(Level *pLevel)
                 if(interactionIdx != -1)
                 {
                     // std::cout << "Interaction detected\n";
-                    std::cout << "m_gameObjects[i]->getInteractionText(): " << m_gameObjects[i]->getInteractionText() << "\n";
+                    // std::cout << "m_gameObjects[i]->getInteractionText(): " << m_gameObjects[i]->getInteractionText() << "\n";
                     TheDialogManager::Instance()->drawDialogLater(m_interactableGameObjects[interactionIdx]->getInteractionText());
-                    // TheDialogManager::Instance()->drawDialogLater(std::string("Hello poke-clone"));
                     // drawDialog = true;
                     
                 }
+                else
+                {
+                    TheDialogManager::Instance()->resetTextCounter();
+                }
+                
             }
             m_gameObjects[i]->draw();
         }

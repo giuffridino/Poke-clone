@@ -23,6 +23,7 @@ public:
 
     void drawDialog(void);  
     void drawDialogLater(std::string text);  
+    void resetTextCounter(void) { m_textCounter = 0; };
     void handleInput(void);
 private:
     DialogManager(void);
@@ -38,6 +39,8 @@ private:
     int temp_y = 656;
     int tempFontSize = 48;
     int temp_spacing = 6;
+
+    int m_textCounter = 0;
     
 };
 

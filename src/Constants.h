@@ -46,7 +46,7 @@ typedef enum
 inline std::string replaceWithNewLineChar(std::string string)
 {
     size_t found = string.find("\\n");
-    std::cout << found << "\n";
+    // std::cout << found << "\n";
     while (found != std::string::npos) {
         string.replace(found, 2, "\n");
         found = string.find("\\n", found + 1);
