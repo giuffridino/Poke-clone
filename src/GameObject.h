@@ -43,6 +43,7 @@ public:
 
 	std::string getTextureID(void) { return m_textureID; }
 	Direction getFacing() { return m_facing; }
+	std::string getInteractionText() { return m_interaction_text; }
 
 protected:
 	GameObject(void) : m_textureID(""),
@@ -52,7 +53,8 @@ protected:
 	m_animRow(0), m_animFrame(0), m_animNumFrames(1), m_frameCounter(0), m_frameDelay(10),
 	m_facing(SOUTH), m_lastFacing(SOUTH),
 	m_moveTime(0), m_framesToCrossOneTile(8), m_speed(16/m_framesToCrossOneTile),
-	m_bUpdating(false), m_bDead(false)
+	m_bUpdating(false), m_bDead(false),
+	m_interaction_text("")
 	{
 	}
 
@@ -64,6 +66,7 @@ protected:
 	Direction m_facing, m_lastFacing;
 	int m_moveTime, m_framesToCrossOneTile, m_speed;
 	bool m_bUpdating, m_bDead;
+	std::string m_interaction_text;
 	// bool m_bDying;
 	// // Flip
 	// SDL_RendererFlip m_flip;

@@ -4,6 +4,7 @@
 
 #include "TrainerObject.h"
 #include "GameObjectFactory.h"
+#include <string>
 
 class InteractableObject : public TrainerObject
 {
@@ -17,6 +18,9 @@ public:
 	virtual void update(void){};
 	virtual void clean(void){};
 	virtual std::string type(void) { return "InteractableObject"; }
+
+// private:
+// 	std::string m_interactionText = "";
 };
 
 class InteractableObjectCreator : public BaseCreator

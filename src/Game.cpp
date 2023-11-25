@@ -38,6 +38,7 @@ bool Game::init(const char *title, int width, int height)
     
     TheCameraManager::Instance()->setCameraTarget(m_pLevel->getPlayer()->getPosition());
     
+    
     return true;
 }
 

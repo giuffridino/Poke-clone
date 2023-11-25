@@ -9,12 +9,13 @@
 class LoaderParams
 {
 public:
-    LoaderParams(std::string textureID = "", Vector2 m_position = {0.0f, 0.0f}, int frameWidth = 0, int frameHeight = 0, int animRow = 0, int animFrame = 0, int animNumFrames = 1, int frameCounter = 0, int frameDelay = 0, Direction facing = SOUTH, int callbackID = 0) : 
+    LoaderParams(std::string textureID = "", Vector2 m_position = {0.0f, 0.0f}, int frameWidth = 0, int frameHeight = 0, int animRow = 0, int animFrame = 0, int animNumFrames = 1, int frameCounter = 0, int frameDelay = 0, Direction facing = SOUTH, int callbackID = 0, std::string interactionText = "") : 
     m_textureID(textureID), 
     m_position(m_position), m_frameWidth(frameWidth), m_frameHeight(frameHeight), 
     m_animRow(animRow), m_animFrame(animFrame), m_animNumFrames(animNumFrames), m_frameCounter(frameCounter), m_frameDelay(frameDelay),
     m_facing(facing),
-    m_callbackID(callbackID)
+    m_callbackID(callbackID),
+    m_interactionText(interactionText)
     {
     }
 
@@ -29,6 +30,7 @@ public:
     int getFrameDelay(void) const { return m_frameDelay; }
     Direction getFacing(void) const { return m_facing; }
     int getCallbackID(void) const { return m_callbackID; }
+    std::string getInteractionText(void) const { return m_interactionText; }
 
 private:
     std::string m_textureID;
@@ -39,6 +41,7 @@ private:
     int m_animRow, m_animFrame, m_animNumFrames, m_frameCounter, m_frameDelay; 
     Direction m_facing;
     int m_callbackID;
+    std::string m_interactionText;
 };
 
 #endif /* defined(__LoaderParams__) */

@@ -8,6 +8,10 @@
 
 enum Direction { NONE, NORTH, SOUTH, EAST, WEST };
 
+inline Color textColor = Color{119, 117, 118, 255};
+inline Color textColor2 = Color{90, 82, 82, 255};
+
+
 inline Direction stringToDirection(const std::string& str) {
     if (str == "NORTH") {
         return NORTH;
@@ -28,6 +32,8 @@ namespace Constants
 {
     const int cellSize = 64;
     const int cellCount = 15;
+    const int windowWidth = 1200;
+    const int windowHeight = 800;
 }
 
 typedef enum
@@ -36,5 +42,16 @@ typedef enum
     RayLib_FLIP_HORIZONTAL = 0x00000001,    /**< flip horizontally */
     RayLib_FLIP_VERTICAL = 0x00000002     /**< flip vertically */
 } RayLib_FLIP;
+
+inline std::string replaceWithNewLineChar(std::string string)
+{
+    size_t found = string.find("\\n");
+    std::cout << found << "\n";
+    while (found != std::string::npos) {
+        string.replace(found, 2, "\n");
+        found = string.find("\\n", found + 1);
+    }
+    return string;
+}
 
 #endif // __Constants__

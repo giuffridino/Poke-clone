@@ -48,7 +48,7 @@ bool CollisionManager::checkPlayerTileCollision(Player *pPlayer, const std::vect
     return false;
 }
 
-bool CollisionManager::checkPlayerInteractableObject(Player* pPlayer, const std::vector<GameObject*> &interactableObjects)
+int CollisionManager::checkPlayerInteractableObject(Player* pPlayer, const std::vector<GameObject*> &interactableObjects)
 {
     // std::cout << "checkPlayerInteractableObject in CollisionManager\n";
     if (pPlayer->getFacing() == NORTH)
@@ -60,12 +60,12 @@ bool CollisionManager::checkPlayerInteractableObject(Player* pPlayer, const std:
             if (Vector2Equals(pPlayer->getPosition(), {interactableObjects[i]->getPosition().x, interactableObjects[i]->getPosition().y}))
             {
                 // TheDialogManager::Instance()->drawDialog();
-                return true;
+                return i;
             }
             
         }
     }
-    return false;
+    return -1;
 }
 
 void CollisionManager::checkPlayerRedrawTile(Player* pPlayer, const std::vector<TileLayer*> &redrawLayers)

@@ -87,10 +87,13 @@ void ObjectLayer::render(Level *pLevel)
             if(m_gameObjects[i]->type() == std::string("Player"))
             {
                 // std::cout << "Checking interaction at player position: " << (*it)->getPosition().x << " " << (*it)->getPosition().y << "\n";
-                if(TheCollisionManager::Instance()->checkPlayerInteractableObject(dynamic_cast<Player*>(m_gameObjects[i]), m_interactableGameObjects))
+                int interactionIdx = TheCollisionManager::Instance()->checkPlayerInteractableObject(dynamic_cast<Player*>(m_gameObjects[i]), m_interactableGameObjects);
+                if(interactionIdx != -1)
                 {
-                    std::cout << "Interaction detected\n";
-                    TheDialogManager::Instance()->drawDialogLater(std::string("Hello poke-clone"));
+                    // std::cout << "Interaction detected\n";
+                    std::cout << "m_gameObjects[i]->getInteractionText(): " << m_gameObjects[i]->getInteractionText() << "\n";
+                    TheDialogManager::Instance()->drawDialogLater(m_interactableGameObjects[interactionIdx]->getInteractionText());
+                    // TheDialogManager::Instance()->drawDialogLater(std::string("Hello poke-clone"));
                     // drawDialog = true;
                     
                 }

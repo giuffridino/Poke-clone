@@ -223,13 +223,14 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Obj
             else
             {
                 // pGameObject->load(std::unique_ptr<LoaderParams>( new LoaderParams(textureID, m_position, frameWidth, frameHeight, animRow, animFrame, animNumFrames, frameCounter, frameDelay, facing, callbackID)));
-                std::string textureID;
+                std::string textureID = "";
                 Vector2 position;
                 int x = 0, y = 0;
                 int frameWidth = 16, frameHeight = 16;
                 int animRow = 0, animFrame = 0, animNumFrames = 0, frameCounter = 0, frameDelay = 10;
                 Direction facing = SOUTH;
                 int callbackID = 0;
+                std::string interactionText = "";
 
                 e->Attribute("x", &x);
                 e->Attribute("y", &y);
@@ -283,11 +284,16 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Obj
                                 {
                                     property->Attribute("value", &callbackID);
                                 }
+                                else if (property->Attribute("name") == std::string("interactionText"))
+                                {
+                                    std::cout << "InteractionText: " << property->Attribute("value") << "\n";
+                                    interactionText = property->Attribute("value");
+                                }
                             }
                         }
                     }
                 }
-                pGameObject->load(std::unique_ptr<LoaderParams>( new LoaderParams(textureID, position, frameWidth, frameHeight, animRow, animFrame, animNumFrames, frameCounter, frameDelay, facing, callbackID)));
+                pGameObject->load(std::unique_ptr<LoaderParams>( new LoaderParams(textureID, position, frameWidth, frameHeight, animRow, animFrame, animNumFrames, frameCounter, frameDelay, facing, callbackID, interactionText)));
                 if (type == "Player")
                 {
                     pLevel->setPlayer(dynamic_cast<Player*>(pGameObject));
