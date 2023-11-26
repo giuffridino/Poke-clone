@@ -98,7 +98,7 @@ void ObjectLayer::render(Level *pLevel)
                 }
                 else
                 {
-                    TheDialogManager::Instance()->resetTextCounter();
+                    TheDialogManager::Instance()->resetDialogVariables();
                 }
                 
             }
