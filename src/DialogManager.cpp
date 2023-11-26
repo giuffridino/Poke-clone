@@ -27,9 +27,11 @@ void DialogManager::drawDialog(void)
         TheTextureManager::Instance()->drawFrame("sign-dialog", 0, Constants::windowHeight - 181, 1200, 181, 0, 0);
         m_strings.clear();
         m_strings.shrink_to_fit();
-        splitDialog(m_strings, replaceWithNewLineChar(m_text), std::string("@@"));
+        splitDialog(m_strings, replaceWithNewLineChar(m_text, m_numNewLines), std::string("@@"));
         handleInput();
-        DrawTextEx(m_font, TextSubtext(m_strings[m_rowTextCounter].c_str(), 0, m_animTextCounter / 4), {(float)temp_x, (float)temp_y}, tempFontSize, -2, WHITE);
+        DrawTextEx(m_font, TextSubtext(m_strings[m_rowTextCounter].c_str(), 0, m_animTextCounter / 4), {(float)m_dialogX, (float)m_dialogY}, m_dialogFontSize, -2, WHITE);
+        // TheTextureManager::Instance()->drawFrame("animated-arrow", temp_x, temp_y, 21, 16, 0, 0);
+        drawAnimatedArrow();
         TheCameraManager::Instance()->beginCameraMode();
     }
     m_bDrawDialogLater = false;
@@ -48,10 +50,28 @@ void DialogManager::drawDialogLater(std::string text)
     m_bDrawDialogLater = true;
 }
 
+void DialogManager::drawAnimatedArrow(void)
+{
+    if (m_strings.size() > (unsigned int) 1 && (unsigned int)m_rowTextCounter < m_strings.size() - 1 && (unsigned int) m_animTextCounter / 4 > m_strings[m_rowTextCounter].size())
+    {
+        Vector2 arrowPos = findArrowPos();
+        TheTextureManager::Instance()->drawFrame("animated-arrow", arrowPos.x, arrowPos.y, 40, 29, 0, m_arrowFrame);
+        m_arrowCounter++;
+        m_arrowFrame = ((m_arrowCounter + 1) / 4) % 5;
+        // std::cout << m_arrowFrame << "\n";
+    }
+    
+}
+
+Vector2 DialogManager::findArrowPos(void)
+{
+    return {(float) m_strings[m_rowTextCounter].size() * 31, (float) (m_dialogY + 10 + m_numNewLines * 50)};
+}
+
 void DialogManager::handleInput(void)
 {
     // std::cout << "handling input in DialogManager\n";    
-    if (IsKeyReleased(KEY_X) && (unsigned int) m_animTextCounter / 4 > m_strings[m_rowTextCounter].size())
+    if (IsKeyUp(KEY_X) && (unsigned int) m_animTextCounter / 4 > m_strings[m_rowTextCounter].size())
     {
         m_bKeyReleased = true;
     }
@@ -59,7 +79,8 @@ void DialogManager::handleInput(void)
     {
         m_animTextCounter += 4;
         // std::cout << m_animTextCounter/4 << " " << m_strings[m_rowTextCounter].size() << "\n";
-        std::cout << "m_rowTextCounter: " << m_rowTextCounter << " m_strings[m_rowTextCounter].size(): " << m_strings[m_rowTextCounter].size() <<"\n";
+        // std::cout << "m_rowTextCounter: " << m_rowTextCounter << " m_strings[m_rowTextCounter].size(): " << m_strings[m_rowTextCounter].size() <<"\n";
+        std::cout << " m_animTextCounter: " << m_animTextCounter << " m_strings[m_rowTextCounter].size(): " << m_strings[m_rowTextCounter].size() << " m_bKeyReleased: " << m_bKeyReleased << "\n";
         if ((unsigned int) m_animTextCounter / 4 > m_strings[m_rowTextCounter].size() && m_bKeyReleased)
         {
             // std::cout << "updating rowTextCounter\n";
@@ -70,7 +91,7 @@ void DialogManager::handleInput(void)
                 m_animTextCounter = 0;
             }
             // m_animTextCounter = ((unsigned int) m_rowTextCounter == m_strings.size() - 1) ? m_animTextCounter : 0;
-            std::cout << "INSIDE m_rowTextCounter: " << m_rowTextCounter << " m_animTextCounter: " << m_animTextCounter << " m_strings[m_rowTextCounter].size(): " << m_strings[m_rowTextCounter].size() <<"\n";
+            // std::cout << " m_animTextCounter: " << m_animTextCounter << " m_strings[m_rowTextCounter].size(): " << m_strings[m_rowTextCounter].size() <<"\n";
             if ((unsigned int) m_rowTextCounter == m_strings.size() - 1 && (unsigned int) m_animTextCounter / 4 > m_strings[m_rowTextCounter].size()) 
             {
                 std::cout << "Closing dialog\n";
@@ -79,27 +100,28 @@ void DialogManager::handleInput(void)
             }
         }
         m_bKeyReleased = false;
+        std::cout << m_bKeyReleased << "\n";
     }
     // if (IsKeyDown(KEY_SPACE))
     // {
     //     m_animTextCounter += 4;
     // }
-    // if(IsKeyDown(KEY_A))
-    // {
-    //     temp_x -= 1;
-    // }
-    // if(IsKeyDown(KEY_D))
-    // {
-    //     temp_x += 1;
-    // }
-    // if(IsKeyDown(KEY_W))
-    // {
-    //     temp_y -= 1;
-    // }
-    // if(IsKeyDown(KEY_S))
-    // {
-    //     temp_y += 1;
-    // }
+    if(IsKeyDown(KEY_A))
+    {
+        temp_x -= 1;
+    }
+    if(IsKeyDown(KEY_D))
+    {
+        temp_x += 1;
+    }
+    if(IsKeyDown(KEY_W))
+    {
+        temp_y -= 1;
+    }
+    if(IsKeyDown(KEY_S))
+    {
+        temp_y += 1;
+    }
     // if(IsKeyDown(KEY_Q))
     // {
     //     tempFontSize -= 1;
@@ -132,4 +154,14 @@ void DialogManager::splitDialog(std::vector<std::string> &result, const std::str
             startIndex = endIndex + separator.size();
         }
     }
+}
+
+void DialogManager::resetDialogVariables(void)
+{
+    m_animTextCounter = 0; 
+    m_rowTextCounter = 0; 
+    m_text = ""; 
+    m_numNewLines = 0;
+    m_arrowFrame = 0;
+    m_arrowCounter = 0;
 }

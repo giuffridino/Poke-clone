@@ -43,13 +43,14 @@ typedef enum
     RayLib_FLIP_VERTICAL = 0x00000002     /**< flip vertically */
 } RayLib_FLIP;
 
-inline std::string replaceWithNewLineChar(std::string string)
+inline std::string replaceWithNewLineChar(std::string string, int &numNewLines)
 {
     size_t found = string.find("\\n");
     // std::cout << found << "\n";
     while (found != std::string::npos) {
         string.replace(found, 2, "\n");
         found = string.find("\\n", found + 1);
+        numNewLines++;
     }
     return string;
 }
