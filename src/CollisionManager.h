@@ -22,6 +22,7 @@ public:
     }
     bool checkPlayerTileCollision(Player* pPlayer, const std::vector<TileLayer*> &collisionLayers);
     int checkPlayerInteractableObject(Player* pPlayer, const std::vector<GameObject*> &interactableObjects);
+    bool checkPlayerGrassObject(Player* pPlayer, const std::vector<GameObject*> &grassObjects);
     void checkPlayerRedrawTile(Player* pPlayer, const std::vector<TileLayer*> &redrawLayers);
 
 private:

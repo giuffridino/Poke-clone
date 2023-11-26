@@ -7,7 +7,6 @@
 
 CollisionManager* CollisionManager::s_pInstance = nullptr;
 
-
 bool CollisionManager::checkPlayerTileCollision(Player *pPlayer, const std::vector<TileLayer*> &collisionLayers)
 {
     for (std::vector<TileLayer *>::const_iterator it = collisionLayers.begin(); it != collisionLayers.end(); ++it)
@@ -59,13 +58,27 @@ int CollisionManager::checkPlayerInteractableObject(Player* pPlayer, const std::
             // std::cout << "interactableObjects[i]->getPosition(): " << interactableObjects[i]->getPosition().x << " " << interactableObjects[i]->getPosition().y << "\n";
             if (Vector2Equals(pPlayer->getPosition(), {interactableObjects[i]->getPosition().x, interactableObjects[i]->getPosition().y}))
             {
-                // TheDialogManager::Instance()->drawDialog();
                 return i;
             }
-            
         }
     }
     return -1;
+}
+
+bool CollisionManager::checkPlayerGrassObject(Player* pPlayer, const std::vector<GameObject*> &grassObjects)
+{
+    // std::cout << "checkPlayergrassObject in CollisionManager\n";
+    for (unsigned int i = 0; i < grassObjects.size(); i++)
+    {
+        // std::cout << "pPlayer->getPosition(): " << pPlayer->getPosition().x << " " << pPlayer->getPosition().y << "\n";
+        // std::cout << "grassObjects[i]->getPosition(): " << grassObjects[i]->getPosition().x << " " << grassObjects[i]->getPosition().y << "\n";
+        if (Vector2Equals({pPlayer->getPosition().x, pPlayer->getPosition().y + 16}, {grassObjects[i]->getPosition().x, grassObjects[i]->getPosition().y}))
+        {
+            grassObjects[i]->setUpdating(true);
+            return true;
+        }
+    }
+    return false;
 }
 
 void CollisionManager::checkPlayerRedrawTile(Player* pPlayer, const std::vector<TileLayer*> &redrawLayers)
@@ -74,26 +87,11 @@ void CollisionManager::checkPlayerRedrawTile(Player* pPlayer, const std::vector<
     {
         TileLayer *pTileLayer = (*it);
         std::vector<std::vector<int>> tiles = pTileLayer->getTileIDs();
-
-        // Vector2 layerPos = pTileLayer->getPosition();
-
-        // int x, y;
         int tileColumn, tileRow, tileID = 0;
-
-        // x = layerPos.x;
-        // y = layerPos.y;
-        // x = layerPos.x / pTileLayer->getTileSize();
-        // y = layerPos.y / pTileLayer->getTileSize();
 
         tileColumn = (pPlayer->getPosition().x) / pTileLayer->getTileSize();
         tileRow = (pPlayer->getPosition().y + 16) / pTileLayer->getTileSize();
         tileID = tiles[tileRow][tileColumn];
-        // std::cout << "pPlayer->getPosition(): " << pPlayer->getPosition().x << " " << pPlayer->getPosition().y << "\n";
-        // std::cout << "tileColumn: " << tileColumn << "\n";
-        // std::cout << "tileRow: " << tileRow << "\n";
-        // std::cout << "tileID: " << tileID << "\n";
-        // std::cout << "x: " << x << "\n";
-        // std::cout << "y: " << y << "\n";
 
         if (tileID != 0)
         {
@@ -113,19 +111,3 @@ Rectangle *CollisionManager::getGameObjectRect(GameObject *pGameObject)
     pRect->height = pGameObject->getHeight();
     return pRect;
 }
-
-// void CollisionManager::testCollision(GameObject *pGameObjectA, GameObject *pGameObjectB)
-// {
-//     Rectangle *pRectA = getGameObjectRect(pGameObjectA);
-//     Rectangle *pRectB = getGameObjectRect(pGameObjectB);
-//     if (RectRect(pRectA, pRectB))
-//     {
-//         if (!pGameObjectA->dying() && !pGameObjectB->dying())
-//         {
-//             pGameObjectA->collision();
-//             pGameObjectB->collision();
-//         }
-//     }
-//     delete pRectA;
-//     delete pRectB;
-// }

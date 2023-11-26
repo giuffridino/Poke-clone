@@ -23,6 +23,7 @@ void Player::load(const std::unique_ptr<LoaderParams> &pParams)
 
 void Player::update()
 {
+    // std::cout << m_position.x << " " << m_position.y << "\n";
     bool checkCollision = false;
     if (m_moveTime <= 0 && !m_bIsMoving)
     {

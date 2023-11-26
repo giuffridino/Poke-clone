@@ -65,7 +65,7 @@ void DialogManager::drawAnimatedArrow(void)
 
 Vector2 DialogManager::findArrowPos(void)
 {
-    return {(float) m_strings[m_rowTextCounter].size() * 31, (float) (m_dialogY + 10 + m_numNewLines * 50)};
+    return {(float) m_strings[m_rowTextCounter].size() * 30, (float) (m_dialogY + 10 + m_numNewLines * 50)};
 }
 
 void DialogManager::handleInput(void)
@@ -80,7 +80,7 @@ void DialogManager::handleInput(void)
         m_animTextCounter += 4;
         // std::cout << m_animTextCounter/4 << " " << m_strings[m_rowTextCounter].size() << "\n";
         // std::cout << "m_rowTextCounter: " << m_rowTextCounter << " m_strings[m_rowTextCounter].size(): " << m_strings[m_rowTextCounter].size() <<"\n";
-        std::cout << " m_animTextCounter: " << m_animTextCounter << " m_strings[m_rowTextCounter].size(): " << m_strings[m_rowTextCounter].size() << " m_bKeyReleased: " << m_bKeyReleased << "\n";
+        // std::cout << " m_animTextCounter: " << m_animTextCounter << " m_strings[m_rowTextCounter].size(): " << m_strings[m_rowTextCounter].size() << " m_bKeyReleased: " << m_bKeyReleased << "\n";
         if ((unsigned int) m_animTextCounter / 4 > m_strings[m_rowTextCounter].size() && m_bKeyReleased)
         {
             // std::cout << "updating rowTextCounter\n";
@@ -100,7 +100,7 @@ void DialogManager::handleInput(void)
             }
         }
         m_bKeyReleased = false;
-        std::cout << m_bKeyReleased << "\n";
+        // std::cout << m_bKeyReleased << "\n";
     }
     // if (IsKeyDown(KEY_SPACE))
     // {

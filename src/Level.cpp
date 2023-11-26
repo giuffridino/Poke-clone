@@ -18,7 +18,7 @@ void Level::render(void)
 {
     for (unsigned int i = 0; i < m_layers.size(); i++)
     {
-        // std::cout << "rendering m_layers[" << i << "]\n";        
+        // std::cout << "rendering m_layers[" << i << "]" << "\n";        
         m_layers[i]->render(this);
     }
     for (unsigned int i = 0; i < m_objectLayers.size(); i++)
@@ -26,6 +26,11 @@ void Level::render(void)
         // std::cout << "rendering m_objectLayers[" << i << "]\n";
         m_objectLayers[i]->render(this);
     }
+    // for (unsigned int i = 0; i < m_objectLayers.size(); i++)
+    // {
+    //     // std::cout << "rendering m_objectLayers[" << i << "]\n";
+    //     m_objectLayers[i]->drawGrass();
+    // }
     for (unsigned int i = 0; i < m_redrawLayers.size(); i++)
     {
         // std::cout << "rendering m_redrawLayers[" << i << "]\n";
@@ -35,7 +40,6 @@ void Level::render(void)
     {
         TheDialogManager::Instance()->drawDialog();
     }
-    
 }
 
 void Level::update(void)

@@ -6,7 +6,7 @@
 
 Color green = Color{20, 160, 133, 255};
 
-const int screenWidth = 1200;
+const int screenWidth = 1280;
 const int screenHeight = 800;
 
 int main()
@@ -28,7 +28,7 @@ int main()
             // player.update();
             // player.draw();
             TheCameraManager::Instance()->endCameraMode();
-            // DrawFPS(GetScreenWidth() - 95, 10);
+            DrawFPS(GetScreenWidth() - 95, 10);
             EndDrawing();
         }
         

@@ -286,7 +286,7 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Obj
                                 }
                                 else if (property->Attribute("name") == std::string("interactionText"))
                                 {
-                                    std::cout << "InteractionText: " << property->Attribute("value") << "\n";
+                                    // std::cout << "InteractionText: " << property->Attribute("value") << "\n";
                                     interactionText = property->Attribute("value");
                                 }
                             }
@@ -301,6 +301,11 @@ void LevelParser::parseObjectLayer(TiXmlElement* pObjectElement, std::vector<Obj
                 if (type == std::string("InteractableObject"))
                 {
                     pObjectLayer->getInteractableGameObjects()->push_back(pGameObject);
+                }
+                else if(type == std::string("GrassObject"))
+                {
+                    pObjectLayer->getGrassObjects()->push_back(pGameObject);
+                    pObjectLayer->getGameObjects()->push_back(pGameObject);
                 }
                 else
                 {

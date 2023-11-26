@@ -28,13 +28,19 @@ void ObjectLayer::update(Level *pLevel)
         {
             // std::cout << "ObjectLayer::update()\n";
             (*it)->update();
-            // if((*it)->type() == std::string("Player"))
+            if((*it)->type() == std::string("Player"))
+            {
+                // std::cout << "Checking interaction at player position: " << (*it)->getPosition().x << " " << (*it)->getPosition().y << "\n";
+                TheCollisionManager::Instance()->checkPlayerGrassObject(dynamic_cast<Player*>(*it), m_grassObjects);
+                // if(TheCollisionManager::Instance()->checkPlayerGrassObject(dynamic_cast<Player*>(*it), m_grassObjects))
+                // {
+                //     // m_grassObjects[i]->setUpdating(true);
+                //     std::cout << "Player in grass detected\n";
+                // }
+            }
+            // if((*it)->type() == std::string("GrassObject") && (*it)->updating())
             // {
-            //     // std::cout << "Checking interaction at player position: " << (*it)->getPosition().x << " " << (*it)->getPosition().y << "\n";
-            //     if(TheCollisionManager::Instance()->checkPlayerInteractableObject(dynamic_cast<Player*>(*it), m_interactableGameObjects))
-            //     {
-            //         std::cout << "Interaction detected\n";
-            //     }
+            //     (*it)->update();
             // }
             // std::cout << (*it)->type() << "\n";
             // if((*it)->getPosition().x <= TheGame::Instance()->getGameWidth())
@@ -114,4 +120,14 @@ void ObjectLayer::render(Level *pLevel)
 	// 	m_collisionManager.checkPlayerRedrawTile(pLevel->getPlayer(), pLevel->getRedrawableLayers());
 	// 	// m_collisionManager.checkPlayerTileCollision(pLevel->getPlayer(), pLevel->getCollidableLayers());
 	// }
+}
+
+void ObjectLayer::drawGrass()
+{
+    for(std::vector<GameObject*>::iterator it = m_grassObjects.begin(); it != m_grassObjects.end();)
+    {
+        std::cout << "drawing grass\n";
+        (*it)->draw();
+        ++it;
+    }
 }

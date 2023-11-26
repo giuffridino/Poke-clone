@@ -7,6 +7,7 @@
 #include "GameObjectFactory.h"
 #include "CameraManager.h"
 #include "AnimatedObject.h"
+#include "GrassObject.h"
 #include "InteractableObject.h"
 
 Game *Game::s_pInstance = nullptr;
@@ -31,6 +32,7 @@ bool Game::init(const char *title, int width, int height)
 
     TheGameObjectFactory::Instance()->registerType("Player", new PlayerCreator());
     TheGameObjectFactory::Instance()->registerType("AnimatedObject", new AnimatedObjectCreator());
+    TheGameObjectFactory::Instance()->registerType("GrassObject", new GrassObjectCreator());
     TheGameObjectFactory::Instance()->registerType("InteractableObject", new InteractableObjectCreator());
 
     LevelParser levelParser;

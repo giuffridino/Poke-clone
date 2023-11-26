@@ -37,7 +37,7 @@ public:
 	// }
 
 	void setUpdating(bool updating) { m_bUpdating = updating; }
-	// bool updating(void) { return m_bUpdating; }
+	bool updating(void) { return m_bUpdating; }
 	bool dead(void) { return m_bDead; }
 	// bool dying(void) { return m_bDying; }
 

@@ -18,7 +18,7 @@ void TrainerObject::load(const std::unique_ptr<LoaderParams> &pParams)
     m_animNumFrames = pParams->getAnimNumFrames();
     m_frameCounter = pParams->getFrameCounter();
     m_frameDelay = pParams->getFrameDelay();
-    std::cout << "pParams->getInteractionText(): " << pParams->getInteractionText() << "\n";
+    // std::cout << "pParams->getInteractionText(): " << pParams->getInteractionText() << "\n";
     m_interaction_text = pParams->getInteractionText();
 }
 
