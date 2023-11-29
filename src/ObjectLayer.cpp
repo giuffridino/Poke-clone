@@ -1,6 +1,6 @@
 #include "ObjectLayer.h"
 #include "Game.h"
-#include "Level.h"
+#include "Map.h"
 #include "CollisionManager.h"
 #include "DialogManager.h"
 #include <iostream>
@@ -14,13 +14,13 @@ ObjectLayer::~ObjectLayer()
     m_gameObjects.clear();
 }
 
-void ObjectLayer::update(Level *pLevel)
+void ObjectLayer::update(Map *pMap)
 {
     // std::cout << "ObjectLayer::update()\n";
-	// if(pLevel->getPlayer()->getPosition().x + pLevel->getPlayer()->getWidth() < TheGame::Instance()->getGameWidth())
+	// if(pMap->getPlayer()->getPosition().x + pMap->getPlayer()->getWidth() < TheGame::Instance()->getGameWidth())
 	// {
-	// 	m_collisionManager.checkPlayerRedrawTile(pLevel->getPlayer(), pLevel->getRedrawableLayers());
-	// 	// m_collisionManager.checkPlayerTileCollision(pLevel->getPlayer(), pLevel->getCollidableLayers());
+	// 	m_collisionManager.checkPlayerRedrawTile(pMap->getPlayer(), pMap->getRedrawableLayers());
+	// 	// m_collisionManager.checkPlayerTileCollision(pMap->getPlayer(), pMap->getCollidableLayers());
 	// }
 	if (!m_gameObjects.empty())
 	{
@@ -81,7 +81,7 @@ void ObjectLayer::update(Level *pLevel)
 	// }
 }
 
-void ObjectLayer::render(Level *pLevel)
+void ObjectLayer::render(Map *pMap)
 {
     // bool drawDialog = false;
 	// std::cout << "rendering objectlayer \n";
@@ -115,10 +115,10 @@ void ObjectLayer::render(Level *pLevel)
     // {
     //     TheDialogManager::Instance()->drawDialog();
     // }
-    // if(pLevel->getPlayer()->getPosition().x + pLevel->getPlayer()->getWidth() < TheGame::Instance()->getGameWidth())
+    // if(pMap->getPlayer()->getPosition().x + pMap->getPlayer()->getWidth() < TheGame::Instance()->getGameWidth())
 	// {
-	// 	m_collisionManager.checkPlayerRedrawTile(pLevel->getPlayer(), pLevel->getRedrawableLayers());
-	// 	// m_collisionManager.checkPlayerTileCollision(pLevel->getPlayer(), pLevel->getCollidableLayers());
+	// 	m_collisionManager.checkPlayerRedrawTile(pMap->getPlayer(), pMap->getRedrawableLayers());
+	// 	// m_collisionManager.checkPlayerTileCollision(pMap->getPlayer(), pMap->getCollidableLayers());
 	// }
 }
 

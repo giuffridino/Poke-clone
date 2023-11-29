@@ -6,8 +6,9 @@
 #include <vector>
 // #include "Player.h"
 #include "GameObject.h"
+#include "GameStateMachine.h"
 
-class Level;
+class Map;
 
 class Game
 {
@@ -25,21 +26,27 @@ public:
     bool running();
     void update();
     void render();
+    void clean();
     void handleEvents();
 
     int getGameWidth() { return m_gameWidth; }
     int getGameHeight() { return m_gameHeight; }
+    GameStateMachine* getGameStateMachine(void) { return m_pGameStateMachine; }
+    void setCurrentMap(int map) { m_currentMap = map; }
+	const int getCurrentMap(void) { return m_currentMap; }
+    std::vector<std::string> getMapFiles() { return m_mapFiles; }
+
+    void quit();
 
 private:
     Game();
     static Game* s_pInstance;
-    // std::vector<GameObject*> m_gameObjects;
     int m_gameWidth;
 	int m_gameHeight;
-    // GameObject* m_player;
-    // GameObject* m_player2;
-    Level* m_pLevel = nullptr;
-    // Player m_player;
+    Map* m_pMap = nullptr;
+    int m_currentMap = 0;
+    std::vector<std::string> m_mapFiles;
+    GameStateMachine* m_pGameStateMachine;
 };
 
 typedef Game TheGame;

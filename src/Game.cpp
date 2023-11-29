@@ -1,20 +1,23 @@
 #include "Game.h"
 #include "Player.h"
 #include "LoaderParams.h"
-#include "LevelParser.h"
-#include "Level.h"
+#include "MapParser.h"
+#include "Map.h"
 #include <iostream>
 #include "GameObjectFactory.h"
 #include "CameraManager.h"
 #include "AnimatedObject.h"
 #include "GrassObject.h"
 #include "InteractableObject.h"
+#include "MainMenuState.h"
+#include "PlayState.h"
 
 Game *Game::s_pInstance = nullptr;
 
 Game::Game()
 {
-
+    m_mapFiles.push_back("first-city.tmx");
+	// m_mapFiles.push_back("alien_map2.tmx");
 }
 
 bool Game::init(const char *title, int width, int height)
@@ -35,10 +38,13 @@ bool Game::init(const char *title, int width, int height)
     TheGameObjectFactory::Instance()->registerType("GrassObject", new GrassObjectCreator());
     TheGameObjectFactory::Instance()->registerType("InteractableObject", new InteractableObjectCreator());
 
-    LevelParser levelParser;
-    m_pLevel = levelParser.parseLevel("first-city.tmx");
+    // MapParser mapParser;
+    // m_pMap = mapParser.parseMap("first-city.tmx");
+    m_pGameStateMachine = new GameStateMachine();
+	m_pGameStateMachine->changeState(new PlayState());
+	// m_pGameStateMachine->changeState(new MainMenuState());
     
-    TheCameraManager::Instance()->setCameraTarget(m_pLevel->getPlayer()->getPosition());
+    // TheCameraManager::Instance()->setCameraTarget(m_pMap->getPlayer()->getPosition());
     
     
     return true;
@@ -46,11 +52,12 @@ bool Game::init(const char *title, int width, int height)
 
 void Game::update()
 {
-    if(m_pLevel != 0)
-    {
-        m_pLevel->update();
-    }
-    TheCameraManager::Instance()->setCameraTarget(m_pLevel->getPlayer()->getPosition());
+    m_pGameStateMachine->update();
+    // if(m_pMap != 0)
+    // {
+    //     m_pMap->update();
+    // }
+    // TheCameraManager::Instance()->setCameraTarget(m_pMap->getPlayer()->getPosition());
     // for (std::vector<GameObject *>::size_type i = 0; i < m_gameObjects.size(); i++)
 	// {
 	// 	m_gameObjects[i]->update();
@@ -60,11 +67,12 @@ void Game::update()
 
 void Game::render()
 {
-    if(m_pLevel != 0)
-    {
-        // std::cout << "rendering m_pLevel\n";
-        m_pLevel->render();
-    }
+    m_pGameStateMachine->render();
+    // if(m_pMap != 0)
+    // {
+    //     // std::cout << "rendering m_pMap\n";
+    //     m_pMap->render();
+    // }
     // for (std::vector<GameObject *>::size_type i = 0; i < m_gameObjects.size(); i++)
 	// {
 	// 	m_gameObjects[i]->draw();
@@ -80,4 +88,19 @@ void Game::handleEvents()
 bool Game::running()
 {
     return !WindowShouldClose();
+}
+
+void Game::clean()
+{
+    std::cout << "Cleaning game\n";
+	m_pGameStateMachine->clean();
+	m_pGameStateMachine = 0;
+	delete m_pGameStateMachine;
+	TheTextureManager::Instance()->clearTextureMap();
+}
+
+void Game::quit()
+{
+    clean();
+    CloseWindow();
 }

@@ -1,6 +1,6 @@
 #pragma once
-#ifndef __Level__
-#define __Level__
+#ifndef __Map__
+#define __Map__
 
 #include <string>
 #include "Player.h"
@@ -20,11 +20,11 @@ struct Tileset
     std::string name;
 };
 
-class Level
+class Map
 {
 public:
 	
-	~Level(void);
+	~Map(void);
     void render(void);
     void update(void);
 
@@ -40,8 +40,8 @@ public:
     Player* getPlayer(void) { return m_pPlayer; }
 
 private:
-    friend class LevelParser;
-    Level(void);
+    friend class MapParser;
+    Map(void);
     
     Player* m_pPlayer; 
 
@@ -51,4 +51,4 @@ private:
     std::vector<TileLayer*> m_collisionLayers;
     std::vector<TileLayer*> m_redrawLayers;
 };
-#endif /* defined(__Level__) */
+#endif /* defined(__Map__) */

@@ -6,7 +6,7 @@
 #include <vector>
 #include "Layer.h"
 
-class Level;
+class Map;
 struct Tileset;
 
 class TileLayer : public Layer
@@ -15,8 +15,8 @@ public:
     TileLayer(int tileSize, const std::vector<Tileset> &tilesets);
     virtual ~TileLayer(void){};
 
-    virtual void update(Level *pLevel);
-    virtual void render(Level *pLevel);
+    virtual void update(Map *pMap);
+    virtual void render(Map *pMap);
     virtual void renderOneTile(Vector2 playerPosition);
 
     void setTileIDs(const std::vector<std::vector<int>> &data) { m_tileIDs = data; }

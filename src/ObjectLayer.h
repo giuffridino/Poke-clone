@@ -4,19 +4,19 @@
 
 #include "Layer.h"
 #include "GameObject.h"
-// #include "Level.h"
+// #include "Map.h"
 // #include "CollisionManager.h"
 #include <vector>
 
-class Level;
+class Map;
 
 class ObjectLayer : public Layer
 {
 public:
     virtual ~ObjectLayer();
 
-	virtual void update(Level *pLevel);
-	virtual void render(Level *pLevel);
+	virtual void update(Map *pMap);
+	virtual void render(Map *pMap);
 
     void drawGrass();
 

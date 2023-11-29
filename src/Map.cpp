@@ -1,10 +1,10 @@
-#include "Level.h"
+#include "Map.h"
 #include "DialogManager.h"
 #include <iostream>
 
-Level::Level(void) { }
+Map::Map(void) { }
 
-Level::~Level(void)
+Map::~Map(void)
 {
     for(unsigned int i = 0; i < m_layers.size(); i++)
     {
@@ -13,8 +13,7 @@ Level::~Level(void)
     m_layers.clear();
 }
 
-
-void Level::render(void)
+void Map::render(void)
 {
     for (unsigned int i = 0; i < m_layers.size(); i++)
     {
@@ -42,9 +41,9 @@ void Level::render(void)
     }
 }
 
-void Level::update(void)
+void Map::update(void)
 {
-    // std::cout << "Updating Level\n";
+    // std::cout << "Updating Map\n";
     for (unsigned int i = 0; i < m_layers.size(); i++)
     {
         // std::cout << "updating m_layers: " << m_layers[i] << "\n";

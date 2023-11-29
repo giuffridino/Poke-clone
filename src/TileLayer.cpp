@@ -1,7 +1,7 @@
 #include "TileLayer.h"
 #include "Game.h"
 #include "TextureManager.h"
-#include "Level.h"
+#include "Map.h"
 #include "raymath.h"
 #include <iostream>
 
@@ -11,13 +11,13 @@ TileLayer::TileLayer(int tileSize, const std::vector<Tileset> &tilesets) : m_til
     m_numRows = Game::Instance()->getGameHeight() / m_tileSize;
 }
 
-void TileLayer::update(Level *pLevel)
+void TileLayer::update(Map *pMap)
 {
     // m_position = Vector2Add(m_position,m_velocity);
     // m_velocity.setX(1);
 }
 
-void TileLayer::render(Level *pLevel)
+void TileLayer::render(Map *pMap)
 {
     // std::cout << "rendering TileLayer\n";
     int x, y, xOffset, yOffset = 0;
